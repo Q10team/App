@@ -19,8 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".login.LoginActivity"></activity>
+        <activity android:name=".login.RegisterActivity"></activity>
+        <activity android:name=".TodoList.MainActivity"></activity>
+        <activity android:name=".TodoList.ListDetail"></activity>
+        <activity android:name=".TodoList.MakeTodoList"></activity>
+        <activity android:name=".TodoList.UpdateTodoList"></activity>
     </application>
 
 </manifest>

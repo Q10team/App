@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity  {
         {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, com.example.teamproject.login.LoginActivity.class));
             }
         }, 1500);
     }
