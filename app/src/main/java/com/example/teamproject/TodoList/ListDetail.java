@@ -109,7 +109,7 @@ public class ListDetail extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         TodoListLocalDAO database = new TodoListLocalDAO(getBaseContext());
-                        if(database.Delete(todoList.getID())){
+                        if(database.Delete(todoList.getListID())){
                             Intent intent = new Intent(ListDetail.this, MainActivity.class);
                             intent.putExtra("date", date);
                             startActivity(intent);

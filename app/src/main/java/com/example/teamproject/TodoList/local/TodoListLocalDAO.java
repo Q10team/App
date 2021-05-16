@@ -45,7 +45,7 @@ public class TodoListLocalDAO extends SQLiteOpenHelper {
                 contentValues.put("importance", todoList.getImportance());
             if(todoList.getProcessHours()!=null)
                 contentValues.put("processHours", todoList.getProcessHours());
-            if(!todoList.getUploadDate().equals(""))
+            if(todoList.getUploadDate()!=null)
                 contentValues.put("uploadDate", todoList.getUploadDate()+" 00:00:00");
             long result = db.insert(TABLE_NAME, null, contentValues);
             db.close();
@@ -108,7 +108,7 @@ public class TodoListLocalDAO extends SQLiteOpenHelper {
                 contentValues.put("importance", todoList.getImportance());
             if(todoList.getProcessHours()!=null)
                 contentValues.put("processHours", todoList.getProcessHours());
-            if(!todoList.getUploadDate().equals(""))
+            if(todoList.getUploadDate()!=null)
                 contentValues.put("uploadDate", todoList.getUploadDate()+" 00:00:00");
             contentValues.put("isAchieved", todoList.getIsAchieved());
             int row = db.update(TABLE_NAME, contentValues, "listID = ?", new String[]{String.valueOf(todoList.getListID())});
