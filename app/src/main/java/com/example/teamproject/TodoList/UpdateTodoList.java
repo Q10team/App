@@ -39,10 +39,17 @@ public class UpdateTodoList extends AppCompatActivity {
         et_ucontent.setText(todoList.getContent());
         et_uimportance.setText(String.valueOf(todoList.getImportance()));
         et_uprocessHours.setText(String.valueOf(todoList.getProcessHours()));
+        String[] datesplit = todoList.getUploadDate().split("-");
+        et_year.setText(datesplit[0]);
+        et_month.setText(datesplit[1]);
+        et_day.setText(datesplit[2]);
         et_utitle.setSelection(et_utitle.getText().length());
         et_ucontent.setSelection(et_ucontent.getText().length());
         et_uimportance.setSelection(et_uimportance.getText().length());
         et_uprocessHours.setSelection(et_uprocessHours.getText().length());
+        et_year.setSelection(et_year.getText().length());
+        et_month.setSelection(et_month.getText().length());
+        et_day.setSelection(et_day.getText().length());
 
         this.btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,14 +72,8 @@ public class UpdateTodoList extends AppCompatActivity {
                 String smonth = et_month.getText().toString();
                 String sday = et_day.getText().toString();
 
-                todoList.setTitle(title);
-                todoList.setContent(content);
-                todoList.setImportance(Integer.parseInt(importance));
-                todoList.setProcessHours(Integer.parseInt(processHours));
-
 
                 if(!title.equals("")){
-                    TodoList todoList = new TodoList();
                     todoList.setTitle(title);
                     todoList.setContent(content);
                     if(!importance.equals(""))
@@ -80,9 +81,9 @@ public class UpdateTodoList extends AppCompatActivity {
                     if(!processHours.equals(""))
                         todoList.setProcessHours(Integer.parseInt(processHours));
                     if(!syear.equals("")&&!smonth.equals("")||!sday.equals("")) {
-                        if(Integer.parseInt(smonth) < 10)
+                        if(smonth.charAt(0) != '0' && Integer.parseInt(smonth) < 10)
                             smonth = "0" + smonth;
-                        if(Integer.parseInt(sday) < 10)
+                        if(sday.charAt(0) != '0' && Integer.parseInt(sday) < 10)
                             sday = "0" + sday;
                         todoList.setUploadDate(syear+"-"+smonth+"-"+sday);
                     }

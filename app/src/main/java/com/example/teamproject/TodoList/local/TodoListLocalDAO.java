@@ -23,8 +23,7 @@ public class TodoListLocalDAO extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME +
                 "(listID INTEGER not null PRIMARY KEY AUTOINCREMENT, " +
                 "title TEXT not null, content TEXT, importance INTEGER, processHours INTEGER, " +
-                "uploadDate TEXT not null DEFAULT(datetime('now', '+9 hours')), isAchieved INTEGER DEFAULT 0)");
-        //isAchieved는 sqlite에 boolean이 없어서 local에서는 int로 처리
+                "uploadDate TEXT not null DEFAULT(date('now', '+9 hours')), isAchieved INTEGER DEFAULT 0)");
         //ID (사용자 ID)는 비회원이기 때문에 없음
     }
 
@@ -46,7 +45,7 @@ public class TodoListLocalDAO extends SQLiteOpenHelper {
             if(todoList.getProcessHours()!=null)
                 contentValues.put("processHours", todoList.getProcessHours());
             if(todoList.getUploadDate()!=null)
-                contentValues.put("uploadDate", todoList.getUploadDate()+" 00:00:00");
+                contentValues.put("uploadDate", todoList.getUploadDate());
             long result = db.insert(TABLE_NAME, null, contentValues);
             db.close();
             if(result == -1)
@@ -108,8 +107,7 @@ public class TodoListLocalDAO extends SQLiteOpenHelper {
                 contentValues.put("importance", todoList.getImportance());
             if(todoList.getProcessHours()!=null)
                 contentValues.put("processHours", todoList.getProcessHours());
-            if(todoList.getUploadDate()!=null)
-                contentValues.put("uploadDate", todoList.getUploadDate()+" 00:00:00");
+            contentValues.put("uploadDate", todoList.getUploadDate());
             contentValues.put("isAchieved", todoList.getIsAchieved());
             int row = db.update(TABLE_NAME, contentValues, "listID = ?", new String[]{String.valueOf(todoList.getListID())});
             db.close();
