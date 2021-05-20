@@ -62,10 +62,6 @@ public class TodoListLocalDAO extends SQLiteOpenHelper {
         try {
             List<TodoList> todoLists = new ArrayList<TodoList>();
             SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            sdf.format(new Date()); //DB전송용
-//            String sdfsty = String.valueOf(sdf.format(System.currentTimeMillis()));
-//            System.out.println(sdfsty);
             String smonth = "", sday = "";
             if(date.getMonth()< 9)
                 smonth +="0";

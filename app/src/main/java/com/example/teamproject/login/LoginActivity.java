@@ -2,7 +2,6 @@ package com.example.teamproject.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,7 +22,6 @@ import com.example.teamproject.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.channels.InterruptedByTimeoutException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, com.example.teamproject.login.RegisterActivity.class));
             }
         });
 
@@ -75,13 +73,14 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(String response) {
                                     try {
+                                        System.out.println("json start   :" + response + ":    json end");
                                         JSONObject jsonObject = new JSONObject(response);
                                         boolean success = jsonObject.getBoolean("success");
                                         String Name = jsonObject.getString("Name");
                                         if (success) { // 로그인에 성공한 경우;
                                             Toast.makeText(getApplicationContext(),Name+"님 환영합니다.",Toast.LENGTH_SHORT).show();
                                             Intent intent =  new Intent(LoginActivity.this, com.example.teamproject.TodoList.MainActivity.class);
-                                            intent.putExtra("ID", ID);
+                                            intent.putExtra("userID", ID);
                                             startActivity(intent);
                                         } else { // 로그인에 실패한 경우
                                             Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();

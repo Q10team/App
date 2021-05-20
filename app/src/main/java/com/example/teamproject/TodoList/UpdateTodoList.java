@@ -9,8 +9,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.teamproject.Global;
 import com.example.teamproject.R;
 import com.example.teamproject.TodoList.local.TodoListLocalDAO;
+import com.example.teamproject.TodoList.server.TodoListServerDAO;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class UpdateTodoList extends AppCompatActivity {
@@ -22,8 +36,10 @@ public class UpdateTodoList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.updatetodolist);
         final TodoListLocalDAO localdb = new TodoListLocalDAO(getBaseContext());
+        TodoListServerDAO serverdb = new TodoListServerDAO();
         final TodoList todoList = (TodoList) getIntent().getSerializableExtra("todoList");
         final DateData date = (DateData) getIntent().getSerializableExtra("date");
+        final String userID = (String) getIntent().getSerializableExtra("userID");
         et_utitle = (EditText)findViewById(R.id.et_utitle);
         et_ucontent = (EditText)findViewById(R.id.et_ucontent);
         et_uimportance = (EditText)findViewById(R.id.et_uimportance);
@@ -57,6 +73,7 @@ public class UpdateTodoList extends AppCompatActivity {
                 Intent intent = new Intent(UpdateTodoList.this, ListDetail.class);
                 intent.putExtra("todoList", todoList);
                 intent.putExtra("date", date);
+                intent.putExtra("userID", userID);
                 startActivity(intent);
             }
         });
@@ -88,13 +105,67 @@ public class UpdateTodoList extends AppCompatActivity {
                         todoList.setUploadDate(syear+"-"+smonth+"-"+sday);
                     }
 
-                    if(localdb.Update(todoList)){
-                        Toast.makeText(UpdateTodoList.this, "SUCCESS!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UpdateTodoList.this, com.example.teamproject.TodoList.MainActivity.class);
-                        intent.putExtra("date", date);
-                        startActivity(intent);
-                    }else{
-                        Toast.makeText(UpdateTodoList.this, "FAILED!", Toast.LENGTH_SHORT).show();
+
+                    if(userID == null) {
+                        if(localdb.Update(todoList)){
+                            Toast.makeText(UpdateTodoList.this, "SUCCESS!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(UpdateTodoList.this, com.example.teamproject.TodoList.MainActivity.class);
+                            intent.putExtra("date", date);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(UpdateTodoList.this, "FAILED!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else {
+                        StringRequest request = new StringRequest(
+                                Request.Method.POST,
+                                Global.GetUrl("update"),
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        try {
+                                            JSONObject jsonObject = new JSONObject(response);
+                                            boolean success = jsonObject.getBoolean("success");
+                                            if (success) { // 성공한 경우;
+                                                Toast.makeText(getApplicationContext(),"Successfully Updated",Toast.LENGTH_SHORT).show();
+                                                Intent intent =  new Intent(UpdateTodoList.this, com.example.teamproject.TodoList.MainActivity.class);
+                                                intent.putExtra("userID", userID);
+                                                intent.putExtra("todoList", todoList);
+                                                intent.putExtra("date", date);
+                                                startActivity(intent);
+                                            } else { // 실패한 경우
+                                                Toast.makeText(UpdateTodoList.this, "Local Database Error", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                        ) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError
+                            {
+                                HashMap<String, String> param = new HashMap<>();
+                                param.put("listID", String.valueOf(todoList.getListID())); //list 식별용, 조건으로 달면 됨
+                                param.put("userID", todoList.getUserID());
+                                param.put("title", todoList.getTitle());
+                                param.put("content", todoList.getContent());
+                                param.put("importance", String.valueOf(todoList.getImportance()));
+                                param.put("processHours", String.valueOf(todoList.getProcessHours()));
+                                param.put("uploadDate", todoList.getUploadDate());
+                                param.put("isAchieved", String.valueOf(todoList.getIsAchieved()));
+
+                                return param;
+                            }
+                        };
+                        request.setShouldCache(false);
+                        Global.requestQueue.add(request);
                     }
                 }else{
                     Toast.makeText(UpdateTodoList.this, "비어있는 칸이 있습니다.", Toast.LENGTH_SHORT).show();
@@ -103,5 +174,9 @@ public class UpdateTodoList extends AppCompatActivity {
 
             }
         });
+
+        if(Global.requestQueue == null){
+            Global.requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
     }
 }

@@ -31,7 +31,6 @@ public class TodoListAdapter extends ArrayAdapter<TodoList> {
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view  = layoutInflater.inflate(R.layout.todolist_list, parent, false);
         TextView tv_title = (TextView)view.findViewById(R.id.tv_title);
-        TextView tv_content = (TextView)view.findViewById(R.id.tv_content);
         tv_title.setText(todoLists.get(position).getTitle());
 
         return view;
