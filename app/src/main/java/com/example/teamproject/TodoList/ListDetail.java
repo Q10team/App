@@ -1,5 +1,6 @@
 package com.example.teamproject.TodoList;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -58,11 +59,16 @@ public class ListDetail extends AppCompatActivity {
         tv_dimportance.setText(String.valueOf(todoList.getImportance()));
         tv_dprocesshours.setText(String.valueOf(todoList.getProcessHours()));
 
+        if(Global.requestQueue == null){
+            Global.requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+
         this.btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListDetail.this, MainActivity.class);
                 intent.putExtra("date", date);
+                intent.putExtra("userID", userID);
                 startActivity(intent);
             }
         });
@@ -78,22 +84,72 @@ public class ListDetail extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         TodoListLocalDAO localdb = new TodoListLocalDAO(getBaseContext());
                         todoList.setIsAchieved(1);
-                        if(localdb.Update(todoList)){
-                            btn_confirm.setEnabled(false);
-                            //로컬이라 포인트 미지급
+                        if(userID==null) {
+                            if(localdb.Update(todoList)){
+                                btn_confirm.setEnabled(false);
+                                //로컬이라 포인트 미지급
+                            }
+                            else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                                builder.setMessage("취소되었습니다.");
+                                builder.setCancelable(false);
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                builder.create().show();
+                            }
                         }
                         else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
-                            builder.setMessage("취소되었습니다.");
-                            builder.setCancelable(false);
-                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            StringRequest request = new StringRequest(
+                                    Request.Method.POST,
+                                    Global.GetUrl("update"),
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                boolean success = jsonObject.getBoolean("success");
+                                                if (success) { // 성공한 경우;
+                                                    btn_confirm.setEnabled(false);
+                                                    Toast.makeText(getApplicationContext(),"Successfully Achieved",Toast.LENGTH_SHORT).show();
+                                                } else { // 실패한 경우
+                                                    Toast.makeText(ListDetail.this, "Server Database Error", Toast.LENGTH_SHORT).show();
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                            ) {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
+                                protected Map<String, String> getParams() throws AuthFailureError
+                                {
+                                    HashMap<String, String> param = new HashMap<>();
+                                    param.put("listID", String.valueOf(todoList.getListID())); //list 식별용, 조건으로 달면 됨
+                                    param.put("userID", todoList.getUserID());
+                                    param.put("title", todoList.getTitle());
+                                    param.put("content", todoList.getContent());
+                                    param.put("importance", String.valueOf(todoList.getImportance()));
+                                    param.put("processHours", String.valueOf(todoList.getProcessHours()));
+                                    param.put("uploadDate", todoList.getUploadDate());
+                                    param.put("isAchieved", String.valueOf(todoList.getIsAchieved()));
+
+                                    return param;
                                 }
-                            });
-                            builder.create().show();
+                            };
+                            request.setShouldCache(false);
+                            Global.requestQueue.add(request);
                         }
+
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
