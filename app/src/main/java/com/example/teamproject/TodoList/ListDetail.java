@@ -105,18 +105,62 @@ public class ListDetail extends AppCompatActivity {
                         else {
                             StringRequest request = new StringRequest(
                                     Request.Method.POST,
-                                    Global.GetUrl("update"),
+                                    Global.GetUrl("earnpoint"),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {
                                             try {
                                                 JSONObject jsonObject = new JSONObject(response);
                                                 boolean success = jsonObject.getBoolean("success");
-                                                if (success) { // 성공한 경우;
-                                                    btn_confirm.setEnabled(false);
-                                                    Toast.makeText(getApplicationContext(),"Successfully Achieved",Toast.LENGTH_SHORT).show();
-                                                } else { // 실패한 경우
-                                                    Toast.makeText(ListDetail.this, "Server Database Error", Toast.LENGTH_SHORT).show();
+                                                if (success) { // 포인트 얻기에 성공한 경우;
+                                                    StringRequest request = new StringRequest(
+                                                            Request.Method.POST,
+                                                            Global.GetUrl("update"),
+                                                            new Response.Listener<String>() {
+                                                                @Override
+                                                                public void onResponse(String response) {
+                                                                    try {
+                                                                        JSONObject jsonObject = new JSONObject(response);
+                                                                        boolean success = jsonObject.getBoolean("success");
+                                                                        if (success) { // 스케줄 정보 업데이트에 성공한 경우;
+                                                                            btn_confirm.setEnabled(false);
+                                                                            Toast.makeText(getApplicationContext(),"Successfully Achieved! You got 5 points.",Toast.LENGTH_SHORT).show();
+                                                                        } else { // 실패한 경우
+                                                                            Toast.makeText(ListDetail.this, "Server Database Error", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    } catch (JSONException e) {
+                                                                        e.printStackTrace();
+                                                                    }
+                                                                }
+                                                            },
+                                                            new Response.ErrorListener() {
+                                                                @Override
+                                                                public void onErrorResponse(VolleyError error) {
+                                                                    Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                    ) {
+                                                        @Override
+                                                        protected Map<String, String> getParams() throws AuthFailureError
+                                                        {
+                                                            HashMap<String, String> param = new HashMap<>();
+                                                            param.put("listID", String.valueOf(todoList.getListID())); //list 식별용, 조건으로 달면 됨
+                                                            param.put("userID", todoList.getUserID());
+                                                            param.put("title", todoList.getTitle());
+                                                            param.put("content", todoList.getContent());
+                                                            param.put("importance", String.valueOf(todoList.getImportance()));
+                                                            param.put("processHours", String.valueOf(todoList.getProcessHours()));
+                                                            param.put("uploadDate", todoList.getUploadDate());
+                                                            param.put("isAchieved", String.valueOf(todoList.getIsAchieved()));
+
+                                                            return param;
+                                                        }
+                                                    };
+                                                    request.setShouldCache(false);
+                                                    Global.requestQueue.add(request);
+                                                } else { // 로그인에 실패한 경우
+                                                    Toast.makeText(getApplicationContext(),"포인트 갱신에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+                                                    return;
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -134,14 +178,8 @@ public class ListDetail extends AppCompatActivity {
                                 protected Map<String, String> getParams() throws AuthFailureError
                                 {
                                     HashMap<String, String> param = new HashMap<>();
-                                    param.put("listID", String.valueOf(todoList.getListID())); //list 식별용, 조건으로 달면 됨
-                                    param.put("userID", todoList.getUserID());
-                                    param.put("title", todoList.getTitle());
-                                    param.put("content", todoList.getContent());
-                                    param.put("importance", String.valueOf(todoList.getImportance()));
-                                    param.put("processHours", String.valueOf(todoList.getProcessHours()));
-                                    param.put("uploadDate", todoList.getUploadDate());
-                                    param.put("isAchieved", String.valueOf(todoList.getIsAchieved()));
+                                    param.put("userID", userID);
+                                    param.put("userpoint", String.valueOf(5));
 
                                     return param;
                                 }
