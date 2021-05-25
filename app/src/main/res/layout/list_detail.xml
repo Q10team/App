@@ -10,7 +10,7 @@
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="33dp"
         android:text="Title"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -22,12 +22,13 @@
     <TextView
         android:id="@+id/tv_dtitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="29dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
 
     <TextView
         android:id="@+id/tv_content"
@@ -41,12 +42,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_dtitle" />
 
-
     <TextView
         android:id="@+id/tv_dcontent"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="136dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_importance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,52 +59,53 @@
     <TextView
         android:id="@+id/tv_importance"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:text="Importance"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_dimportance"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_dprocessHours"
+        app:layout_constraintEnd_toStartOf="@+id/tv_processHours"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_dcontent" />
 
     <TextView
         android:id="@+id/tv_dimportance"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_processHours"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_importance" />
+        android:layout_height="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_dprocessHours"
+        app:layout_constraintEnd_toStartOf="@+id/tv_dprocessHours"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_processHours"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="23dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
         android:text="Estimated Process Hours"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_dprocessHours"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_importance"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dimportance" />
+        app:layout_constraintStart_toEndOf="@+id/tv_importance" />
 
     <TextView
         android:id="@+id/tv_dprocessHours"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="138dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="308dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_processHours" />
+        app:layout_constraintStart_toEndOf="@+id/tv_dimportance"
+        app:layout_constraintTop_toBottomOf="@+id/tv_importance" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="1dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
