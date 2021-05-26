@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         tv_username = (TextView)findViewById(R.id.tv_username);
         if(userID!=null)
             tv_username.setText(userID);
+        else
+            tv_username.setText("로그인이 필요합니다.");
 
         com.example.teamproject.TodoList.adapter.TodoListAdapter todoListAdapter = new com.example.teamproject.TodoList.adapter.TodoListAdapter(getApplicationContext(), todoLists);
 
@@ -105,9 +107,6 @@ public class MainActivity extends AppCompatActivity {
                                 Integer point = jsonObject.getInt("point");
                                 if (success) { // 로그인에 성공한 경우;
                                     tv_point.setText(String.valueOf(point));
-                                } else { // 로그인에 실패한 경우
-                                    tv_point.setText("비회원은 포인트 조회가 불가능합니다.");
-                                    return;
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -135,8 +134,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         todoLists.clear();
-        if(userID==null)
+        if(userID==null) {
             todoLists = localdb.Read(date);
+            System.out.println(todoLists.size());
+            todoListAdapter.notifyDataSetChanged();
+        }
         else {
             StringRequest request = new StringRequest(
                     Request.Method.POST,
@@ -212,10 +214,11 @@ public class MainActivity extends AppCompatActivity {
             }
             public void OnDateSetListener() {
                 todoLists.clear();
-                if(userID==null)
+                if(userID==null) {
                     todoLists = localdb.Read(date);
+                    todoListAdapter.notifyDataSetChanged();
+                }
                 else {
-                    todoLists.clear();
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
                             Global.GetUrl("read"), new Response.Listener<String>() {
@@ -265,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
                     request.setShouldCache(false);
                     Global.requestQueue.add(request);
                 }
-                //com.example.teamproject.TodoList.adapter.TodoListAdapter todoListAdapter = new com.example.teamproject.TodoList.adapter.TodoListAdapter(getApplicationContext(), todoLists);
                 todoListAdapter.sort(new Comparator<TodoList>() {
                     @Override
                     public int compare(TodoList o1, TodoList o2) {
