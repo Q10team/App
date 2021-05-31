@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,8 @@ import java.util.Map;
 
 
 public class UpdateTodoList extends AppCompatActivity {
-    private EditText et_utitle, et_ucontent, et_uimportance, et_uprocessHours, et_year, et_month, et_day;
+    private EditText et_utitle, et_ucontent, et_uprocessHours, et_year, et_month, et_day;
+    RatingBar rb_uimportance;
     private Button btn_back, btn_update;
 
     @Override
@@ -42,7 +44,7 @@ public class UpdateTodoList extends AppCompatActivity {
         final String userID = (String) getIntent().getSerializableExtra("userID");
         et_utitle = (EditText)findViewById(R.id.et_utitle);
         et_ucontent = (EditText)findViewById(R.id.et_ucontent);
-        et_uimportance = (EditText)findViewById(R.id.et_uimportance);
+        rb_uimportance = (RatingBar) findViewById(R.id.rb_uimportance);
         et_uprocessHours = (EditText)findViewById(R.id.et_uprocessHours);
         et_year = findViewById(R.id.et_year);
         et_month = findViewById(R.id.et_month);
@@ -53,7 +55,7 @@ public class UpdateTodoList extends AppCompatActivity {
 
         et_utitle.setText(todoList.getTitle());
         et_ucontent.setText(todoList.getContent());
-        et_uimportance.setText(String.valueOf(todoList.getImportance()));
+        rb_uimportance.setRating((float)todoList.getImportance());
         et_uprocessHours.setText(String.valueOf(todoList.getProcessHours()));
         String[] datesplit = todoList.getUploadDate().split("-");
         et_year.setText(datesplit[0]);
@@ -61,11 +63,21 @@ public class UpdateTodoList extends AppCompatActivity {
         et_day.setText(datesplit[2]);
         et_utitle.setSelection(et_utitle.getText().length());
         et_ucontent.setSelection(et_ucontent.getText().length());
-        et_uimportance.setSelection(et_uimportance.getText().length());
         et_uprocessHours.setSelection(et_uprocessHours.getText().length());
         et_year.setSelection(et_year.getText().length());
         et_month.setSelection(et_month.getText().length());
         et_day.setSelection(et_day.getText().length());
+
+        final String[] tempimportance = {"0"};
+
+        rb_uimportance.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                rb_uimportance.setRating(rating);
+                tempimportance[0] = String.valueOf((int)rating);
+            }
+        });
+
 
         this.btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +95,7 @@ public class UpdateTodoList extends AppCompatActivity {
             public void onClick(View v) {
                 String title = et_utitle.getText().toString();
                 String content = et_ucontent.getText().toString();
-                String importance = et_uimportance.getText().toString();
+                String importance = tempimportance[0];
                 String processHours = et_uprocessHours.getText().toString();
                 String syear = et_year.getText().toString();
                 String smonth = et_month.getText().toString();

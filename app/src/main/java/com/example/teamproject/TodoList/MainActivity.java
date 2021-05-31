@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.teamproject.Global;
 import com.example.teamproject.R;
+import com.example.teamproject.TodoList.adapter.TodoListAdapter;
 import com.example.teamproject.TodoList.local.TodoListLocalDAO;
 import com.example.teamproject.TodoList.server.TodoListServerDAO;
 import com.example.teamproject.login.LoginActivity;
@@ -84,15 +86,16 @@ public class MainActivity extends AppCompatActivity {
         btn_add = (Button)findViewById(R.id.btn_add);
         lv_list = (ListView)findViewById(R.id.lv_list);
         tv_date = (TextView)findViewById(R.id.tv_date);
-        tv_date.setText(year + "년" + (month+1) + "월" + day + "일");
+        tv_date.setText(year + "년 " + (month+1) + "월 " + day + "일");
         tv_point = (TextView)findViewById(R.id.tv_point);
         tv_username = (TextView)findViewById(R.id.tv_username);
         if(userID!=null)
             tv_username.setText(userID);
         else
-            tv_username.setText("로그인이 필요합니다.");
+            tv_username.setText("로그인하세요.");
 
         com.example.teamproject.TodoList.adapter.TodoListAdapter todoListAdapter = new com.example.teamproject.TodoList.adapter.TodoListAdapter(getApplicationContext(), todoLists);
+        lv_list.setAdapter(todoListAdapter);
 
         if(userID!=null){
             StringRequest request = new StringRequest(
@@ -136,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         todoLists.clear();
         if(userID==null) {
             todoLists = localdb.Read(date);
-            System.out.println(todoLists.size());
+            todoListAdapter.updateDataSet(todoLists);
             todoListAdapter.notifyDataSetChanged();
         }
         else {
@@ -145,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
                     Global.GetUrl("read"), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    todoLists.clear();
                     try {
                         JSONArray jsonArray = new JSONArray(response);
                         for(int i=0; i<jsonArray.length();i++) {
@@ -190,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
             request.setShouldCache(false);
             Global.requestQueue.add(request);
         }
+
         todoListAdapter.sort(new Comparator<TodoList>() {
             @Override
             public int compare(TodoList o1, TodoList o2) {

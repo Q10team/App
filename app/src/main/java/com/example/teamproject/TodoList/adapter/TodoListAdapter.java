@@ -25,6 +25,11 @@ public class TodoListAdapter extends ArrayAdapter<TodoList> {
         this.todoLists = todoLists;
     }
 
+    public void updateDataSet(List<TodoList> todoLists) {
+        this.todoLists = todoLists;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

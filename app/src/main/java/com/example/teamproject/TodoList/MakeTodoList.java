@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +30,8 @@ import java.util.Map;
 public class MakeTodoList extends AppCompatActivity {
     TodoListLocalDAO localdb;
     TodoListServerDAO serverdb;
-    EditText et_regtitle, et_regcontent, et_regimportance, et_regprocessHours, et_year, et_month, et_day;
+    EditText et_regtitle, et_regcontent, et_regprocessHours, et_year, et_month, et_day;
+    RatingBar rb_regimportance;
     Button btn_regsave, btn_regback;
 
     @Override
@@ -45,7 +47,7 @@ public class MakeTodoList extends AppCompatActivity {
 
         et_regtitle = (EditText)findViewById(R.id.et_title);
         et_regcontent = (EditText)findViewById(R.id.et_content);
-        et_regimportance = (EditText)findViewById(R.id.et_importance);
+        rb_regimportance = (RatingBar)findViewById(R.id.rb_importance);
         et_regprocessHours = (EditText)findViewById(R.id.et_processHours);
         et_year = findViewById(R.id.et_year);
         et_month = findViewById(R.id.et_month);
@@ -57,12 +59,22 @@ public class MakeTodoList extends AppCompatActivity {
         et_month.setText(String.valueOf(date.getMonth()+1));
         et_day.setText(String.valueOf(date.getDay()));
 
+        final String[] tempimportance = {"0"};
+
+        rb_regimportance.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                rb_regimportance.setRating(rating);
+                tempimportance[0] = String.valueOf((int)rating);
+            }
+        });
+
         btn_regsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = et_regtitle.getText().toString();
                 String content = et_regcontent.getText().toString();
-                String importance = et_regimportance.getText().toString();
+                String importance = tempimportance[0];
                 String processHours = et_regprocessHours.getText().toString();
                 String syear = et_year.getText().toString();
                 String smonth = et_month.getText().toString();
@@ -87,7 +99,7 @@ public class MakeTodoList extends AppCompatActivity {
                             Toast.makeText(MakeTodoList.this, "Successfully Inserted", Toast.LENGTH_SHORT).show();
                             et_regtitle.setText("");
                             et_regcontent.setText("");
-                            et_regimportance.setText("");
+                            rb_regimportance.setRating(0);
                             et_regprocessHours.setText("");
                             et_year.setText("");
                             et_month.setText("");
@@ -113,7 +125,7 @@ public class MakeTodoList extends AppCompatActivity {
                                                 Toast.makeText(getApplicationContext(),"Successfully Inserted",Toast.LENGTH_SHORT).show();
                                                 et_regtitle.setText("");
                                                 et_regcontent.setText("");
-                                                et_regimportance.setText("");
+                                                rb_regimportance.setRating(0);
                                                 et_regprocessHours.setText("");
                                                 et_year.setText("");
                                                 et_month.setText("");

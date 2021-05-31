@@ -10,25 +10,26 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
         android:text="Title"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_title"
-        app:layout_constraintEnd_toStartOf="@+id/et_title" />
+        app:layout_constraintEnd_toStartOf="@+id/et_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:background="@drawable/content"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/et_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/tv_content"
@@ -36,22 +37,27 @@
         android:layout_height="wrap_content"
         android:text="Content"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_content"
         app:layout_constraintEnd_toStartOf="@+id/tv_title"
-        app:layout_constraintStart_toStartOf="@+id/tv_title" />
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="@+id/et_content" />
 
     <EditText
         android:id="@+id/et_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/content"
         android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/et_importance"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/rb_importance"
+        app:layout_constraintStart_toEndOf="@+id/tv_content"
         app:layout_constraintTop_toBottomOf="@+id/et_title" />
+
 
     <TextView
         android:id="@+id/tv_importance"
@@ -59,28 +65,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="271dp"
         android:text="Importance"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_importance"
-        app:layout_constraintEnd_toStartOf="@+id/et_importance"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_importance"
+    <RatingBar
+        android:id="@+id/rb_importance"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
-        android:layout_toRightOf="@+id/tv_importance"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_importance"
-        app:layout_constraintTop_toBottomOf="@+id/et_content" />
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginBottom="1dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:stepSize="1.0"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_importance"
+        app:layout_constraintStart_toEndOf="@+id/tv_importance" />
 
     <TextView
         android:id="@+id/tv_processHours"
@@ -88,24 +93,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
         android:text="Hours"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_processHours"
-        app:layout_constraintEnd_toStartOf="@+id/et_processHours" />
+        app:layout_constraintEnd_toStartOf="@+id/et_processHours"
+        app:layout_constraintTop_toTopOf="@+id/et_processHours" />
 
     <EditText
         android:id="@+id/et_processHours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
         android:layout_toRightOf="@+id/tv_processHours"
+        android:background="@drawable/content"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/et_importance"
-        app:layout_constraintTop_toBottomOf="@+id/et_importance" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rb_importance" />
 
     <TextView
         android:id="@+id/tv_date"
@@ -115,39 +123,40 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="13dp"
         android:layout_marginEnd="19dp"
         android:layout_marginRight="19dp"
         android:text="Date(y/m/d)"
         android:textSize="25sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_year"
         app:layout_constraintEnd_toStartOf="@+id/et_year"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_year" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_year"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="0dp"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_toRightOf="@+id/tv_processHours"
+        android:background="@drawable/content"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_month"
+        app:layout_constraintBottom_toBottomOf="@+id/et_month"
         app:layout_constraintEnd_toStartOf="@+id/et_month"
-        app:layout_constraintStart_toEndOf="@+id/tv_date" />
+        app:layout_constraintStart_toEndOf="@+id/tv_date"
+        app:layout_constraintTop_toTopOf="@+id/et_month" />
 
     <EditText
         android:id="@+id/et_month"
         android:layout_width="0dp"
         android:layout_height="47dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
         android:layout_toRightOf="@+id/tv_processHours"
+        android:background="@drawable/content"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/et_day"
@@ -162,6 +171,7 @@
         android:layout_marginEnd="57dp"
         android:layout_marginRight="57dp"
         android:layout_toRightOf="@+id/tv_processHours"
+        android:background="@drawable/content"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBaseline_toBaselineOf="@+id/et_month"
@@ -174,13 +184,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_importance"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
         android:layout_marginBottom="37dp"
         android:ems="10"
         android:text="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_regback" />
 
     <Button
@@ -189,13 +198,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_importance"
         android:layout_alignParentLeft="true"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
         android:ems="10"
         android:text="BACK"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_regsave"
-        app:layout_constraintEnd_toStartOf="@+id/btn_regsave"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
