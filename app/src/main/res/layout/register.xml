@@ -1,69 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     tools:context=".login.RegisterActivity">
 
-    <EditText
-        android:id="@+id/et_ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="아이디"
-        android:inputType="text" />
+    <LinearLayout
+        android:id="@+id/framereg"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et_PW"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="비밀번호"
-        android:inputType="text" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=" 회원가입"
+            android:textSize="30dp" />
 
-    <EditText
-        android:id="@+id/et_Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="이름"
-        android:inputType="text"/>
+        <ImageButton
+            android:id="@+id/imgbtnback"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/et_Eamil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="이메일"
-        android:inputType="text"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/framereg"
+        >
+        <EditText
+            android:id="@+id/et_ID"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:ems="15"
+            android:hint="   아이디"
+            android:background="@drawable/textback"
+            android:inputType="text" />
 
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="가입" />
+        <EditText
+            android:id="@+id/et_PW"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:ems="15"
+            android:hint="   비밀번호"
+            android:background="@drawable/textback"
+            android:inputType="text" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/et_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:ems="15"
+            android:hint="   이름"
+            android:background="@drawable/textback"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_Eamil"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="15"
+            android:hint="   이메일"
+            android:background="@drawable/textback"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="300dp"
+            android:text="가입하기" />
+    </LinearLayout>
+
+</RelativeLayout>
