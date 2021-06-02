@@ -6,211 +6,176 @@
     android:layout_height="match_parent"
     tools:context=".TodoList.UpdateTodoList">
 
-    <TextView
-        android:id="@+id/Textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:layout_marginBottom="24dp"
-        android:text="Title"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/Textview2"
-        app:layout_constraintEnd_toStartOf="@+id/et_utitle" />
-
-    <EditText
-        android:id="@+id/et_utitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="37dp"
-        android:layout_marginRight="37dp"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/Textview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Textview" />
-
-    <TextView
-        android:id="@+id/Textview2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="129dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Content"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_ucontent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_ucontent"
-        android:layout_width="wrap_content"
-        android:layout_height="129dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="58dp"
-        android:layout_marginBottom="59dp"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="@+id/Textview3"
-        app:layout_constraintStart_toEndOf="@+id/Textview"
-        app:layout_constraintTop_toTopOf="@+id/et_utitle" />
-
-
-    <TextView
-        android:id="@+id/Textview3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="271dp"
-        android:text="Importance"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RatingBar
-        android:id="@+id/rb_uimportance"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:stepSize="1.0"
-        app:layout_constraintStart_toEndOf="@+id/Textview3"
-        app:layout_constraintTop_toTopOf="@+id/Textview3" />
-
-    <TextView
-        android:id="@+id/Textview4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Hours"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_uprocessHours"
-        app:layout_constraintTop_toBottomOf="@+id/Textview3" />
-
-    <EditText
-        android:id="@+id/et_uprocessHours"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/Textview4"
-        app:layout_constraintEnd_toEndOf="@+id/et_year"
-        app:layout_constraintStart_toStartOf="@+id/rb_uimportance"
-        app:layout_constraintTop_toTopOf="@+id/Textview4" />
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Date(y/m/d)"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_year"
-        app:layout_constraintEnd_toStartOf="@+id/et_year"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/et_year"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_month"
-        app:layout_constraintEnd_toStartOf="@+id/et_month"
-        app:layout_constraintStart_toEndOf="@+id/tv_date" />
-
-    <EditText
-        android:id="@+id/et_month"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="94dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="93dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textPersonName"
+    <LinearLayout
+        android:id="@+id/framereg"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toStartOf="@+id/et_day"
-        app:layout_constraintStart_toEndOf="@+id/et_year"
-        app:layout_constraintTop_toBottomOf="@+id/rb_uimportance" />
-
-    <EditText
-        android:id="@+id/et_day"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="66dp"
-        android:layout_marginRight="66dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_month"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/et_month" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=" 일정 수정"
+            android:textSize="30dp" />
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="149dp"
-        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/framereg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/framereg">
 
-        <Button
-            android:id="@+id/btn_back"
+        <EditText
+            android:id="@+id/et_utitle"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:hint="   제목"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_ucontent"
+            android:layout_width="wrap_content"
+            android:layout_height="115dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:gravity="start|top"
+            android:hint="   내용"
+            android:inputType="textMultiLine" />
+
+        <RatingBar
+            android:id="@+id/rb_uimportance"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Back"
-            tools:layout_editor_absoluteX="-3dp"
-            tools:layout_editor_absoluteY="595dp" />
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:stepSize="1.0"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="268dp" />
+
+        <EditText
+            android:id="@+id/et_uprocessHours"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:hint="   예상 소요시간"
+            android:inputType="text" />
+
+
+        <LinearLayout
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_year"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="165dp"
+                tools:layout_editor_absoluteY="415dp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/et_month"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="237dp"
+                tools:layout_editor_absoluteY="415dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/et_day"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="306dp"
+                tools:layout_editor_absoluteY="415dp" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_update"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Update"
-            tools:layout_editor_absoluteX="130dp"
-            tools:layout_editor_absoluteY="-102dp" />
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="수정" />
+
     </LinearLayout>
 
 

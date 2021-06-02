@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv_date , tv_point, tv_username;
+    private TextView tv_date , tv_point;
     private DatePickerDialog.OnDateSetListener callbackMethod;
 
     int year, month, day;
@@ -88,11 +88,6 @@ public class MainActivity extends AppCompatActivity {
         tv_date = (TextView)findViewById(R.id.tv_date);
         tv_date.setText(year + "년 " + (month+1) + "월 " + day + "일");
         tv_point = (TextView)findViewById(R.id.tv_point);
-        tv_username = (TextView)findViewById(R.id.tv_username);
-        if(userID!=null)
-            tv_username.setText(userID);
-        else
-            tv_username.setText("로그인하세요.");
 
         com.example.teamproject.TodoList.adapter.TodoListAdapter todoListAdapter = new com.example.teamproject.TodoList.adapter.TodoListAdapter(getApplicationContext(), todoLists);
         lv_list.setAdapter(todoListAdapter);
