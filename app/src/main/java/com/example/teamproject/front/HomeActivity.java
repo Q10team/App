@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,6 +19,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+
+        final String userID = (String) getIntent().getSerializableExtra("userID");
 
         btn1 = (Button)findViewById(R.id.under_1);
         btn2 = (Button)findViewById(R.id.under_2);
@@ -46,7 +50,9 @@ public class HomeActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, com.example.teamproject.TodoList.MainActivity.class));
+                Intent intent = new Intent(HomeActivity.this, com.example.teamproject.TodoList.MainActivity.class);
+                intent.putExtra("userID", userID);
+                startActivity(intent);
             }
         });
 

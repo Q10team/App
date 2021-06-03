@@ -313,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, com.example.teamproject.front.HomeActivity.class);
+                intent.putExtra("userID", userID);
                 startActivity(intent);
             }
         });
