@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,8 @@ import java.util.Map;
 
 public class ListDetail extends AppCompatActivity {
     private TextView tv_dtitle, tv_dcontent, tv_dimportance, tv_dprocesshours;
-    private Button btn_back, btn_confirm,  btn_edit, btn_delete;
+    private Button btn_confirm,  btn_edit, btn_delete;
+    private ImageButton btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class ListDetail extends AppCompatActivity {
         tv_dcontent = (TextView)findViewById(R.id.tv_dcontent);
         tv_dimportance = (TextView)findViewById(R.id.tv_dimportance);
         tv_dprocesshours = (TextView)findViewById(R.id.tv_dprocessHours);
-        this.btn_back = (Button)findViewById(R.id.btn_back);
+        this.btn_back = (ImageButton)findViewById(R.id.btn_back);
         btn_confirm = (Button)findViewById(R.id.btn_comfirm);
         if(todoList.getIsAchieved() == 1) {
             btn_confirm.setEnabled(false);
@@ -57,7 +59,7 @@ public class ListDetail extends AppCompatActivity {
         tv_dtitle.setText(todoList.getTitle());
         tv_dcontent.setText(todoList.getContent());
         tv_dimportance.setText(String.valueOf(todoList.getImportance()));
-        tv_dprocesshours.setText(String.valueOf(todoList.getProcessHours()));
+        tv_dprocesshours.setText(String.valueOf(todoList.getProcessHours()) + "시간");
 
         if(Global.requestQueue == null){
             Global.requestQueue = Volley.newRequestQueue(getApplicationContext());

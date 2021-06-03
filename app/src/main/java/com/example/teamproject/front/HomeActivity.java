@@ -1,5 +1,6 @@
 package com.example.teamproject.front;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,8 +26,8 @@ public class HomeActivity extends AppCompatActivity {
         btn5 = (Button)findViewById(R.id.under_5);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        FragRank1 fragrank1 = new FragRank1();
-        transaction.replace(R.id.frame, fragrank1);
+        FragHome fraghome = new FragHome();
+        transaction.replace(R.id.frame, fraghome);
         transaction.addToBackStack(null);
         transaction.commit();
 
@@ -34,22 +35,32 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                FragRank1 fragrank1 = new FragRank1();
-                transaction.replace(R.id.frame, fragrank1);
+                FragHome fraghome = new FragHome();
+                transaction.replace(R.id.frame, fraghome);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
+
+
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, com.example.teamproject.TodoList.MainActivity.class));
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                FragRank2 fragrank2 = new FragRank2();
-                transaction.replace(R.id.frame, fragrank2);
+                FragRank fragrank = new FragRank();
+                transaction.replace(R.id.frame, fragrank);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
+
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

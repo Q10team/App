@@ -16,6 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
+        android:background="@drawable/lowback"
         android:layout_alignParentBottom="true"
         >
         //하단바 버튼
