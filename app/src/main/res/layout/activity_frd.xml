@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_frd"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text=" 친구"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="35dp" />
+
+            <ImageButton
+                android:id="@+id/ibtn_back"
+                android:layout_width="50dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/white"
+                app:srcCompat="?attr/actionModeCloseDrawable" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_frd"
+                    android:layout_width="200dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="12dp"
+                    android:ems="15"
+                    android:hint="   아이디"
+                    android:background="@drawable/textback"
+                    android:inputType="text" /> />
+
+
+                <Button
+                    android:id="@+id/btn_frdadd"
+                    android:layout_width="40dp"
+                    android:layout_height="49dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:text="+" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/frd_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/bestback"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/frd_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:id="@+id/img_frd1"
+                        android:layout_width="48dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/user1" />
+                    <Button
+                        android:id="@+id/btn_frd1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        app:backgroundTint="@color/white"
+                        android:gravity="left"
+                        android:text=" hb"
+                        android:textSize="20dp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frd_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:id="@+id/img_frd2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/user3" />
+                    <Button
+                        android:id="@+id/btn_frd2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        app:backgroundTint="@color/white"
+                        android:gravity="left"
+                        android:text=" user"
+                        android:textSize="20dp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frd_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:id="@+id/img_frd3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/user2" />
+
+                    <Button
+                        android:id="@+id/btn_frd3"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="left"
+                        android:text=" hgh"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        app:backgroundTint="@color/white" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frd_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:id="@+id/img_frd4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/user3" />
+
+                    <Button
+                        android:id="@+id/btn_fr4"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="left"
+                        android:text="pmw"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        app:backgroundTint="@color/white" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frd_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:id="@+id/img_frd5"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/user2" />
+                    <Button
+                        android:id="@+id/btn_frd5"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        app:backgroundTint="@color/white"
+                        android:gravity="left"
+                        android:text=" 친구5 아이디"
+                        android:textSize="20dp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+</LinearLayout>

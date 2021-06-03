@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -45,12 +44,19 @@ public class HomeActivity extends AppCompatActivity {
                 transaction.commit();
             }
         });
-
-
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, com.example.teamproject.TodoList.MainActivity.class);
+                intent.putExtra("userID", userID);
+                startActivity(intent);
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, com.example.teamproject.front.FrdActivity.class);
                 intent.putExtra("userID", userID);
                 startActivity(intent);
             }
@@ -61,17 +67,26 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 FragRank fragrank = new FragRank();
+
+                Bundle bundle = new Bundle(1); // 파라미터의 숫자는 전달하려는 값의 갯수
+                bundle.putString("userID", userID);
+                fragrank.setArguments(bundle);
+
                 transaction.replace(R.id.frame, fragrank);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
-
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 FragSet fragset = new FragSet();
+
+                Bundle bundle = new Bundle(1); // 파라미터의 숫자는 전달하려는 값의 갯수
+                bundle.putString("userID", userID);
+                fragset.setArguments(bundle);
+
                 transaction.replace(R.id.frame, fragset);
                 transaction.addToBackStack(null);
                 transaction.commit();

@@ -25,30 +25,44 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#ee9b9b"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:text="홈"/>
         <Button
             android:id="@+id/under_2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Todo"/>
+            android:background="#ee9b9b"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="To\ndo"/>
+
         <Button
             android:id="@+id/under_3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="랭킹"/>
+            android:background="#ee9b9b"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="친구" />
+
         <Button
             android:id="@+id/under_4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="커뮤\n니티"/>
+            android:background="#ee9b9b"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="랭킹"/>
+
+
         <Button
             android:id="@+id/under_5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#ee9b9b"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:text="설정"/>
 
 

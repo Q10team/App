@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamProject"
         android:usesCleartextTraffic="true">
+        <activity android:name=".front.FrdActivity"></activity>
         <activity
             android:name=".front.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.TeamProject.NoActionBar"></activity>
+            android:theme="@style/Theme.TeamProject.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

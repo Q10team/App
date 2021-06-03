@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +68,7 @@
                                 android:layout_marginTop="20dp"
                                 android:layout_marginLeft="20dp"
                                 android:text="오늘의 Todo"
-                                android:textSize="30dp"
+                                android:textSize="25dp"
                                 />
 
                             <ListView
@@ -100,7 +101,7 @@
                                 android:layout_marginTop="20dp"
                                 android:layout_marginLeft="20dp"
                                 android:text="앞으로의 Todo"
-                                android:textSize="30dp"
+                                android:textSize="25dp"
                                 />
 
                             <ListView
@@ -135,7 +136,7 @@
 <!--                          오늘의 추천 게시글-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
+                    android:layout_height="160dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
@@ -147,10 +148,87 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:layout_marginLeft="20dp"
-                        android:text="실시간 추천 게시글"
-                        android:textSize="30dp"/>
+                        android:layout_marginTop="20dp"
+                        android:text="주목할 친구"
+                        android:textSize="25dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/ibtn_img"
+                            android:layout_width="65dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:scaleType="fitCenter"
+                            android:background="@color/white"
+                            android:src="@drawable/user1" />
+
+                        <LinearLayout
+                            android:layout_width="380dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="250dp"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="7dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/textView10"
+                                    android:layout_width="1dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text=" 닉네임"
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp" />
+
+                                <TextView
+                                    android:id="@+id/textView11"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp"
+                                    android:text="박민우" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/textView12"
+                                    android:layout_width="1dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="15dp"
+                                    android:textColor="@color/black"
+                                    android:text=" 포인트" />
+
+                                <TextView
+                                    android:id="@+id/textView13"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="15dp"
+                                    android:textColor="@color/black"
+                                    android:text="1225p" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
 <!--                          오늘의 추천 커뮤니티-->
                 <LinearLayout
@@ -219,7 +297,7 @@
                                 android:id="@+id/imageView3"
                                 android:layout_width="match_parent"
                                 android:layout_height="185dp"
-                                android:layout_margin="5dp"
+                                android:layout_margin="6dp"
                                 app:srcCompat="@drawable/ad2" />
                             <Button
                                 android:id="@+id/btn_ad2"
