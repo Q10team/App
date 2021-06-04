@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -31,7 +32,8 @@ import java.util.Map;
 public class UpdateTodoList extends AppCompatActivity {
     private EditText et_utitle, et_ucontent, et_uprocessHours, et_year, et_month, et_day;
     RatingBar rb_uimportance;
-    private Button btn_back, btn_update;
+    private Button btn_update;
+    private ImageButton btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +48,10 @@ public class UpdateTodoList extends AppCompatActivity {
         et_ucontent = (EditText)findViewById(R.id.et_ucontent);
         rb_uimportance = (RatingBar) findViewById(R.id.rb_uimportance);
         et_uprocessHours = (EditText)findViewById(R.id.et_uprocessHours);
-        et_year = findViewById(R.id.et_year);
-        et_month = findViewById(R.id.et_month);
-        et_day = findViewById(R.id.et_day);
-        this.btn_back = (Button)findViewById(R.id.btn_back);
+        et_year = (EditText)findViewById(R.id.et_year);
+        et_month = (EditText)findViewById(R.id.et_month);
+        et_day = (EditText)findViewById(R.id.et_day);
+        this.btn_back = (ImageButton)findViewById(R.id.btn_back);
         btn_update = (Button)findViewById(R.id.btn_update);
 
 

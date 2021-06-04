@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -32,7 +33,8 @@ public class MakeTodoList extends AppCompatActivity {
     TodoListServerDAO serverdb;
     EditText et_regtitle, et_regcontent, et_regprocessHours, et_year, et_month, et_day;
     RatingBar rb_regimportance;
-    Button btn_regsave, btn_regback;
+    Button btn_regsave;
+    ImageButton btn_regback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,11 @@ public class MakeTodoList extends AppCompatActivity {
         et_regcontent = (EditText)findViewById(R.id.et_content);
         rb_regimportance = (RatingBar)findViewById(R.id.rb_importance);
         et_regprocessHours = (EditText)findViewById(R.id.et_processHours);
-        et_year = findViewById(R.id.et_year);
-        et_month = findViewById(R.id.et_month);
-        et_day = findViewById(R.id.et_day);
+        et_year = (EditText)findViewById(R.id.et_year);
+        et_month = (EditText)findViewById(R.id.et_month);
+        et_day = (EditText)findViewById(R.id.et_day);
         btn_regsave = (Button)findViewById(R.id.btn_regsave);
-        btn_regback = (Button)findViewById(R.id.btn_regback);
+        btn_regback = (ImageButton)findViewById(R.id.btn_regback);
 
         et_year.setText(String.valueOf(date.getYear()));
         et_month.setText(String.valueOf(date.getMonth()+1));

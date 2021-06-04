@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/purple_500">
+    android:background="#ee9b9b">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGO"
+        android:text="TODO"
         android:textSize="90dp"
+        android:textStyle="bold"
         android:textColor="@color/white"
         android:id="@+id/textView_ID" />
 

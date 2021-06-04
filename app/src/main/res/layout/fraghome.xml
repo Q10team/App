@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="270dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text=" TODO"
+                        android:textColor="@color/black"
+                        android:textSize="35dp"
+                        android:textStyle="" />
+
+                </LinearLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scrollbars="none"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+<!--                        여기에 오늘의 할 일-->
+                        <LinearLayout
+
+                            android:layout_width="280dp"
+                            android:layout_height="240dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/bestback"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:text="오늘의 Todo"
+                                android:textSize="25dp"
+                                />
+
+                            <ListView
+                                android:id="@+id/lv_tdlist"
+                                android:layout_width="match_parent"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                            </ListView>
+
+                        </LinearLayout>
+<!--                         여기에 앞으로 할 일-->
+                        <LinearLayout
+                            android:layout_width="280dp"
+                            android:layout_height="240dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="30dp"
+                            android:background="@drawable/bestback"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:text="앞으로의 Todo"
+                                android:textSize="25dp"
+                                />
+
+                            <ListView
+                                android:id="@+id/lv_fulist"
+                                android:layout_width="match_parent"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                            </ListView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+<!--                     광고 기능, 충북대학교 링크-->
+                <ImageButton
+                    android:id="@+id/imgbtncbnu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_horizontal"
+                    app:srcCompat="@drawable/cbnu" />
+<!--                          오늘의 추천 게시글-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bestback"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="주목할 친구"
+                        android:textSize="25dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/ibtn_img"
+                            android:layout_width="65dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:scaleType="fitCenter"
+                            android:background="@color/white"
+                            android:src="@drawable/user1" />
+
+                        <LinearLayout
+                            android:layout_width="380dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="250dp"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="7dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/textView10"
+                                    android:layout_width="1dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text=" 닉네임"
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp" />
+
+                                <TextView
+                                    android:id="@+id/textView11"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp"
+                                    android:text="박민우" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/textView12"
+                                    android:layout_width="1dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="15dp"
+                                    android:textColor="@color/black"
+                                    android:text=" 포인트" />
+
+                                <TextView
+                                    android:id="@+id/textView13"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textSize="15dp"
+                                    android:textColor="@color/black"
+                                    android:text="1225p" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+<!--                          오늘의 추천 커뮤니티-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bestback"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="30dp"
+                        android:text="실시간 추천 커뮤니티" />
+                </LinearLayout>
+<!--                    스크롤 광고 이미지 삽입 -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="100dp"
+                    android:layout_height="250dp"
+                    android:scrollbars="none"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="320dp"
+                            android:layout_height="240dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/bestback"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="185dp"
+                                android:layout_margin="5dp"
+                                app:srcCompat="@drawable/ad1" />
+
+                            <Button
+                                android:id="@+id/btn_ad1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
+                                android:textStyle="bold"
+                                android:text="바로가기" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="320dp"
+                            android:layout_height="240dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/bestback"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="match_parent"
+                                android:layout_height="185dp"
+                                android:layout_margin="6dp"
+                                app:srcCompat="@drawable/ad2" />
+                            <Button
+                                android:id="@+id/btn_ad2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
+                                android:textStyle="bold"
+                                android:text="바로가기" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="320dp"
+                            android:layout_height="240dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="30dp"
+                            android:background="@drawable/bestback"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView4"
+                                android:layout_width="match_parent"
+                                android:layout_height="185dp"
+                                android:layout_margin="5dp"
+                                app:srcCompat="@drawable/ad3" />
+                            <Button
+                                android:id="@+id/btn_ad3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
+                                android:textStyle="bold"
+                                android:text="바로가기" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</FrameLayout>
+
+

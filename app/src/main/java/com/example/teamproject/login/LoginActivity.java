@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText et_ID, et_PW;
-    private Button btn_login, btn_register, btn_noregister;
+    private Button btn_login, btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         et_PW = findViewById(R.id.et_PW);
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
-        btn_noregister = findViewById(R.id.btn_noregister);
 
-        btn_noregister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, com.example.teamproject.TodoList.MainActivity.class));
-            }
-        });
+
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                                         String Name = jsonObject.getString("Name");
                                         if (success) { // 로그인에 성공한 경우;
                                             Toast.makeText(getApplicationContext(),Name+"님 환영합니다.",Toast.LENGTH_SHORT).show();
-                                            Intent intent =  new Intent(LoginActivity.this, com.example.teamproject.TodoList.MainActivity.class);
+                                            Intent intent =  new Intent(LoginActivity.this, com.example.teamproject.front.HomeActivity.class);
                                             intent.putExtra("userID", ID);
                                             startActivity(intent);
                                         } else { // 로그인에 실패한 경우

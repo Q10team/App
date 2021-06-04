@@ -1,208 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TodoList.MakeTodoList">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:text="Title"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_title"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="37dp"
-        android:layout_marginRight="37dp"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_title"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:id="@+id/framereg"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Content"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_title"
-        app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toTopOf="@+id/et_content" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=" 일정 추가"
+            android:textSize="30dp" />
 
-    <EditText
-        android:id="@+id/et_content"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/rb_importance"
-        app:layout_constraintStart_toEndOf="@+id/tv_content"
-        app:layout_constraintTop_toBottomOf="@+id/et_title" />
+        <ImageButton
+            android:id="@+id/btn_regback"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/framereg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="78dp">
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:hint="   제목"
+            android:inputType="text"
+            tools:layout_editor_absoluteX="166dp"
+            tools:layout_editor_absoluteY="43dp" />
 
 
-    <TextView
-        android:id="@+id/tv_importance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="271dp"
-        android:text="Importance"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="wrap_content"
+            android:layout_height="115dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:gravity="start|top"
+            android:hint="   내용"
+            android:inputType="textMultiLine"
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="120dp" />
 
-    <RatingBar
-        android:id="@+id/rb_importance"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginBottom="1dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:stepSize="1.0"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_importance"
-        app:layout_constraintStart_toEndOf="@+id/tv_importance" />
 
-    <TextView
-        android:id="@+id/tv_processHours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
-        android:text="Hours"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_processHours"
-        app:layout_constraintTop_toTopOf="@+id/et_processHours" />
+        <RatingBar
+            android:id="@+id/rb_importance"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:stepSize="1.0"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="268dp" />
 
-    <EditText
-        android:id="@+id/et_processHours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginRight="37dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_importance" />
 
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
-        android:text="Date(y/m/d)"
-        android:textSize="25sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_year"
-        app:layout_constraintEnd_toStartOf="@+id/et_year"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/et_processHours"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:hint="   예상 소요시간"
+            android:inputType="text"
+            tools:layout_editor_absoluteX="166dp"
+            tools:layout_editor_absoluteY="354dp" />
 
-    <EditText
-        android:id="@+id/et_year"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/et_month"
-        app:layout_constraintEnd_toStartOf="@+id/et_month"
-        app:layout_constraintStart_toEndOf="@+id/tv_date"
-        app:layout_constraintTop_toTopOf="@+id/et_month" />
+        <LinearLayout
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et_month"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/et_day"
-        app:layout_constraintStart_toEndOf="@+id/et_year"
-        app:layout_constraintTop_toBottomOf="@+id/et_processHours" />
+            <EditText
+                android:id="@+id/et_year"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="15"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="165dp"
+                tools:layout_editor_absoluteY="415dp" />
 
-    <EditText
-        android:id="@+id/et_day"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="57dp"
-        android:layout_marginRight="57dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:background="@drawable/content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_month"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/et_month" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="30dp" />
 
-    <Button
-        android:id="@+id/btn_regsave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_importance"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginBottom="37dp"
-        android:ems="10"
-        android:text="SAVE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_regback" />
+            <EditText
+                android:id="@+id/et_month"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="15"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="237dp"
+                tools:layout_editor_absoluteY="415dp" />
 
-    <Button
-        android:id="@+id/btn_regback"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_importance"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:ems="10"
-        android:text="BACK"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_regsave"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="30dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/et_day"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="15"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="306dp"
+                tools:layout_editor_absoluteY="415dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_regsave"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="추가" />
+    </LinearLayout>
+
+</RelativeLayout>
