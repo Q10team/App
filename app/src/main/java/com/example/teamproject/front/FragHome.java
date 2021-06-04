@@ -118,7 +118,6 @@ public class FragHome extends Fragment {
                     if(date.getDay() < 10)
                         sday +="0";
                     String sdfstr = date.getYear() +"-"+smonth+ (date.getMonth() + 1) +"-"+sday+ date.getDay();
-                    System.out.println(sdfstr);
                     parameters.put("uploadDate", sdfstr);
                     return parameters;
                 }

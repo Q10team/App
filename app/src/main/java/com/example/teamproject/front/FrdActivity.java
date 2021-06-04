@@ -13,7 +13,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.teamproject.Global;
 import com.example.teamproject.R;
+import com.example.teamproject.TodoList.MakeTodoList;
+import com.example.teamproject.TodoList.TodoList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FrdActivity extends AppCompatActivity {
     ImageButton imgbtn;
@@ -21,6 +37,7 @@ public class FrdActivity extends AppCompatActivity {
     TextView txtName;
     EditText et_frd;
     LinearLayout frd5;
+    ArrayList<String> friends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +54,45 @@ public class FrdActivity extends AppCompatActivity {
 
         frd5.setVisibility(View.INVISIBLE);
         imgbtn = (ImageButton)findViewById(R.id.ibtn_back);
+
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                Global.GetUrl("friend"),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+
+                            for(int i=0; i<jsonArray.length();i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String friend = jsonObject.getString("friendID");
+                                friends.add(friend); //friends 리스트에 친구 이름들 모아뒀습니다. onclick은 미적용했습니다. 세부정보 조회 불가능
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                HashMap<String, String> param = new HashMap<>();
+                param.put("userID", userID);
+                return param;
+            }
+        };
+        request.setShouldCache(false);
+        Global.requestQueue.add(request);
+
+
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,18 +106,48 @@ public class FrdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String ID = et_frd.getText().toString();
-                if(ID.equals("hms")) {
-                    txtName.setText(ID);
-                    frd5.setVisibility(View.VISIBLE);
-                    Toast.makeText(getApplicationContext(), "친구 추가 완료", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "없는 계정입니다.", Toast.LENGTH_SHORT).show();
-                }
+                //txtName.setText(ID);
+                //frd5.setVisibility(View.VISIBLE);
+                StringRequest request = new StringRequest(
+                        Request.Method.POST,
+                        Global.GetUrl("insertfriend"),
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if (success) { // 성공한 경우;
+                                        Toast.makeText(getApplicationContext(), "친구 추가 완료", Toast.LENGTH_SHORT).show();
+                                        et_frd.setText("");
+                                    } else { // 실패한 경우
+                                        Toast.makeText(getApplicationContext(), "없는 계정입니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                )  {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        HashMap<String, String> param = new HashMap<>();
+                        param.put("sendID", userID);
+                        param.put("recieveID", ID);
+                        return param;
+                    }
+                };
+                request.setShouldCache(false);
+                Global.requestQueue.add(request);
             }
         });
-
-    }
+    };
 }
 
 
