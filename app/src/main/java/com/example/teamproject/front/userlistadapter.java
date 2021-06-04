@@ -29,10 +29,12 @@ public class userlistadapter extends ArrayAdapter<User> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view  = layoutInflater.inflate(R.layout.ranklist_list, parent, false);
+        TextView tv_rank = (TextView)view.findViewById(R.id.tv_rank);
+        tv_rank.setText(String.valueOf(userLists.get(position).getUserNum()));
         TextView tv_name = (TextView)view.findViewById(R.id.tv_name);
         tv_name.setText(userLists.get(position).getUserName());
         TextView tv_point = (TextView)view.findViewById(R.id.tv_point);
-        tv_point.setText(userLists.get(position).getUserPoint());
+        tv_point.setText(String.valueOf(userLists.get(position).getUserPoint()));
 
         return view;
     }

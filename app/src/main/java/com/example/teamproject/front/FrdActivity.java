@@ -50,6 +50,7 @@ public class FrdActivity extends AppCompatActivity {
         txtName = (TextView)findViewById(R.id.btn_frd5);
         frd5 = (LinearLayout)findViewById(R.id.frd_5);
         final String userID = (String) getIntent().getSerializableExtra("userID");
+        friends = new ArrayList<String>();
 
 
         frd5.setVisibility(View.INVISIBLE);
@@ -108,43 +109,48 @@ public class FrdActivity extends AppCompatActivity {
                 String ID = et_frd.getText().toString();
                 //txtName.setText(ID);
                 //frd5.setVisibility(View.VISIBLE);
-                StringRequest request = new StringRequest(
-                        Request.Method.POST,
-                        Global.GetUrl("insertfriend"),
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject jsonObject = new JSONObject(response);
-                                    boolean success = jsonObject.getBoolean("success");
-                                    if (success) { // 성공한 경우;
-                                        Toast.makeText(getApplicationContext(), "친구 추가 완료", Toast.LENGTH_SHORT).show();
-                                        et_frd.setText("");
-                                    } else { // 실패한 경우
-                                        Toast.makeText(getApplicationContext(), "없는 계정입니다.", Toast.LENGTH_SHORT).show();
+                if(!userID.equals(ID)) {
+                    StringRequest request = new StringRequest(
+                            Request.Method.POST,
+                            Global.GetUrl("insertfriend"),
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response);
+                                        boolean success = jsonObject.getBoolean("success");
+                                        if (success) { // 성공한 경우;
+                                            Toast.makeText(getApplicationContext(), "친구 추가 완료", Toast.LENGTH_SHORT).show();
+                                            et_frd.setText("");
+                                        } else { // 실패한 경우
+                                            Toast.makeText(getApplicationContext(), "없는 계정입니다.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+                    )  {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            HashMap<String, String> param = new HashMap<>();
+                            param.put("sendID", userID);
+                            param.put("recieveID", ID);
+                            return param;
                         }
-                )  {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        HashMap<String, String> param = new HashMap<>();
-                        param.put("sendID", userID);
-                        param.put("recieveID", ID);
-                        return param;
-                    }
-                };
-                request.setShouldCache(false);
-                Global.requestQueue.add(request);
+                    };
+                    request.setShouldCache(false);
+                    Global.requestQueue.add(request);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "자신의 계정은 추가할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     };
