@@ -122,7 +122,7 @@ public class FragRank extends Fragment {
                 if(userID!=null){
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
-                            Global.GetUrl("userfriendrank"), new Response.Listener<String>() {
+                            Global.GetUrl("friendrank"), new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             try {
