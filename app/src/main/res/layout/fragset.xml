@@ -101,7 +101,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="230dp"
             android:layout_margin="10dp"
             android:background="@drawable/bestback"
             android:gravity="left"
@@ -116,8 +116,23 @@
                 android:textColor="@color/black"
                 android:textSize="25dp" />
 
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="몇인지" />
+
             <Button
                 android:id="@+id/btn_set1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                app:backgroundTint="@color/white"
+                android:gravity="left"
+                android:text="  아바타 변경 1~6"
+                android:textColor="@color/black" />
+            <Button
+                android:id="@+id/btn_set2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -127,7 +142,7 @@
                 android:textColor="@color/black" />
 
             <Button
-                android:id="@+id/btn_set2"
+                android:id="@+id/btn_set3"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -137,7 +152,7 @@
                 android:textColor="@color/black" />
 
             <Button
-                android:id="@+id/btn_set3"
+                android:id="@+id/btn_set4"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 app:backgroundTint="@color/white"
@@ -166,7 +181,7 @@
                 android:textSize="25dp" />
 
             <Button
-                android:id="@+id/btn_set4"
+                android:id="@+id/btn_set5"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 app:backgroundTint="@color/white"
@@ -176,7 +191,7 @@
                 android:textColor="@color/black" />
 
             <Button
-                android:id="@+id/btn_set5"
+                android:id="@+id/btn_set6"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 app:backgroundTint="@color/white"

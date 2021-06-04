@@ -34,7 +34,7 @@ public class FragSet extends Fragment {
         ID = (TextView)rootView.findViewById(R.id.textView13);
         ID.setText(userID);
 
-        setbtn = (Button)rootView.findViewById(R.id.btn_set5);
+        setbtn = (Button)rootView.findViewById(R.id.btn_set6);
         setbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

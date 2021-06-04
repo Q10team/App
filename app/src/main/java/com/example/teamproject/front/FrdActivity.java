@@ -45,7 +45,6 @@ public class FrdActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
-
         });
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
