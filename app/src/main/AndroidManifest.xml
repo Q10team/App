@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.RegisterActivity" />
+        <activity android:name=".front.FragSet" />
         <activity android:name=".TodoList.MainActivity" />
         <activity android:name=".TodoList.ListDetail" />
         <activity android:name=".TodoList.MakeTodoList" />

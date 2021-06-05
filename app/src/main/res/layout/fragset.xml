@@ -93,7 +93,7 @@
                         android:layout_weight="1"
                         android:textSize="15dp"
                         android:textColor="@color/black"
-                        android:text="아이디 여기에 출력" />
+                        android:text="아이디" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -101,10 +101,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="270dp"
             android:layout_margin="10dp"
             android:background="@drawable/bestback"
-            android:gravity="left"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
@@ -112,54 +112,62 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
+                android:layout_gravity="left"
                 android:text="계정"
                 android:textColor="@color/black"
                 android:textSize="25dp" />
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
+
+            <EditText
+                android:id="@+id/et_Name"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
-                android:text="몇인지" />
-
-            <Button
-                android:id="@+id/btn_set1"
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:hint="닉네임"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:inputType="text"
+                app:backgroundTint="@color/white" />
+            <EditText
+                android:id="@+id/et_Avata"
+                android:layout_width="360dp"
                 android:layout_height="40dp"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 app:backgroundTint="@color/white"
+                android:maxLines="1"
                 android:gravity="left"
-                android:text="  아바타 변경 1~6"
+                android:hint="아바타"
+                android:inputType="text"
                 android:textColor="@color/black" />
-            <Button
-                android:id="@+id/btn_set2"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/et_Eamil"
+                android:layout_width="360dp"
+                android:layout_height="40dp"
+                app:backgroundTint="@color/white"
+                android:maxLines="1"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:gravity="left"
+                android:hint="이메일"
+                android:inputType="text"
+                android:textColor="@color/black" />
+            <EditText
+                android:id="@+id/et_PW"
+                android:layout_width="360dp"
                 android:layout_height="40dp"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 app:backgroundTint="@color/white"
+                android:maxLines="1"
                 android:gravity="left"
-                android:text="  닉네임 변경"
+                android:hint="비밀번호"
+                android:inputType="text"
                 android:textColor="@color/black" />
-
             <Button
-                android:id="@+id/btn_set3"
-                android:layout_width="match_parent"
+                android:id="@+id/btn_modify"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:backgroundTint="@color/white"
-                android:gravity="left"
-                android:text="  비밀번호 변경"
-                android:textColor="@color/black" />
-
-            <Button
-                android:id="@+id/btn_set4"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:backgroundTint="@color/white"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:gravity="left"
-                android:text="  이메일 변경"
-                android:textColor="@color/black" />
+                android:gravity="center_horizontal"
+                android:text="수정"/>
 
 
         </LinearLayout>
