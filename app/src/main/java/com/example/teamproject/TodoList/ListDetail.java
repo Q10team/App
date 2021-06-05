@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,8 @@ import java.util.Map;
 
 public class ListDetail extends AppCompatActivity {
     private TextView tv_dtitle, tv_dcontent, tv_dimportance, tv_dprocesshours;
-    private Button btn_back, btn_confirm,  btn_edit, btn_delete;
+    private Button btn_confirm,  btn_edit, btn_delete;
+    private ImageButton btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class ListDetail extends AppCompatActivity {
         tv_dcontent = (TextView)findViewById(R.id.tv_dcontent);
         tv_dimportance = (TextView)findViewById(R.id.tv_dimportance);
         tv_dprocesshours = (TextView)findViewById(R.id.tv_dprocessHours);
-        this.btn_back = (Button)findViewById(R.id.btn_back);
+        this.btn_back = (ImageButton)findViewById(R.id.btn_back);
         btn_confirm = (Button)findViewById(R.id.btn_comfirm);
         if(todoList.getIsAchieved() == 1) {
             btn_confirm.setEnabled(false);
@@ -57,7 +59,7 @@ public class ListDetail extends AppCompatActivity {
         tv_dtitle.setText(todoList.getTitle());
         tv_dcontent.setText(todoList.getContent());
         tv_dimportance.setText(String.valueOf(todoList.getImportance()));
-        tv_dprocesshours.setText(String.valueOf(todoList.getProcessHours()));
+        tv_dprocesshours.setText(String.valueOf(todoList.getProcessHours()) + "시간");
 
         if(Global.requestQueue == null){
             Global.requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -105,18 +107,62 @@ public class ListDetail extends AppCompatActivity {
                         else {
                             StringRequest request = new StringRequest(
                                     Request.Method.POST,
-                                    Global.GetUrl("update"),
+                                    Global.GetUrl("earnpoint"),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {
                                             try {
                                                 JSONObject jsonObject = new JSONObject(response);
                                                 boolean success = jsonObject.getBoolean("success");
-                                                if (success) { // 성공한 경우;
-                                                    btn_confirm.setEnabled(false);
-                                                    Toast.makeText(getApplicationContext(),"Successfully Achieved",Toast.LENGTH_SHORT).show();
-                                                } else { // 실패한 경우
-                                                    Toast.makeText(ListDetail.this, "Server Database Error", Toast.LENGTH_SHORT).show();
+                                                if (success) { // 포인트 얻기에 성공한 경우;
+                                                    StringRequest request = new StringRequest(
+                                                            Request.Method.POST,
+                                                            Global.GetUrl("update"),
+                                                            new Response.Listener<String>() {
+                                                                @Override
+                                                                public void onResponse(String response) {
+                                                                    try {
+                                                                        JSONObject jsonObject = new JSONObject(response);
+                                                                        boolean success = jsonObject.getBoolean("success");
+                                                                        if (success) { // 스케줄 정보 업데이트에 성공한 경우;
+                                                                            btn_confirm.setEnabled(false);
+                                                                            Toast.makeText(getApplicationContext(),"Successfully Achieved! You got 5 points.",Toast.LENGTH_SHORT).show();
+                                                                        } else { // 실패한 경우
+                                                                            Toast.makeText(ListDetail.this, "Server Database Error", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    } catch (JSONException e) {
+                                                                        e.printStackTrace();
+                                                                    }
+                                                                }
+                                                            },
+                                                            new Response.ErrorListener() {
+                                                                @Override
+                                                                public void onErrorResponse(VolleyError error) {
+                                                                    Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                    ) {
+                                                        @Override
+                                                        protected Map<String, String> getParams() throws AuthFailureError
+                                                        {
+                                                            HashMap<String, String> param = new HashMap<>();
+                                                            param.put("listID", String.valueOf(todoList.getListID())); //list 식별용, 조건으로 달면 됨
+                                                            param.put("userID", todoList.getUserID());
+                                                            param.put("title", todoList.getTitle());
+                                                            param.put("content", todoList.getContent());
+                                                            param.put("importance", String.valueOf(todoList.getImportance()));
+                                                            param.put("processHours", String.valueOf(todoList.getProcessHours()));
+                                                            param.put("uploadDate", todoList.getUploadDate());
+                                                            param.put("isAchieved", String.valueOf(todoList.getIsAchieved()));
+
+                                                            return param;
+                                                        }
+                                                    };
+                                                    request.setShouldCache(false);
+                                                    Global.requestQueue.add(request);
+                                                } else { // 로그인에 실패한 경우
+                                                    Toast.makeText(getApplicationContext(),"포인트 갱신에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+                                                    return;
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -134,14 +180,8 @@ public class ListDetail extends AppCompatActivity {
                                 protected Map<String, String> getParams() throws AuthFailureError
                                 {
                                     HashMap<String, String> param = new HashMap<>();
-                                    param.put("listID", String.valueOf(todoList.getListID())); //list 식별용, 조건으로 달면 됨
-                                    param.put("userID", todoList.getUserID());
-                                    param.put("title", todoList.getTitle());
-                                    param.put("content", todoList.getContent());
-                                    param.put("importance", String.valueOf(todoList.getImportance()));
-                                    param.put("processHours", String.valueOf(todoList.getProcessHours()));
-                                    param.put("uploadDate", todoList.getUploadDate());
-                                    param.put("isAchieved", String.valueOf(todoList.getIsAchieved()));
+                                    param.put("userID", userID);
+                                    param.put("userpoint", String.valueOf(5));
 
                                     return param;
                                 }

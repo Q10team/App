@@ -23,7 +23,11 @@ public class TodoListAdapter extends ArrayAdapter<TodoList> {
         super(context, R.layout.todolist_list, todoLists);
         this.context = context;
         this.todoLists = todoLists;
-        System.out.println("Adapter 실행, get list size: "+ todoLists.size());
+    }
+
+    public void updateDataSet(List<TodoList> todoLists) {
+        this.todoLists = todoLists;
+        notifyDataSetChanged();
     }
 
     @NonNull

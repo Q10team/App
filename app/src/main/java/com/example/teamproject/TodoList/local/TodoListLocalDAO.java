@@ -68,9 +68,7 @@ public class TodoListLocalDAO extends SQLiteOpenHelper {
             if(date.getDay() < 10)
                 sday +="0";
             String sdfstr = date.getYear() +"-"+smonth+ (date.getMonth() + 1) +"-"+sday+ date.getDay();
-            //System.out.println(sdfstr);
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE uploadDate LIKE '"+ sdfstr +"%'", null);
-            //Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE uploadDate LIKE '"+ year +"-"+month+"-"+day+"%'", null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE uploadDate LIKE '%"+ sdfstr +"%'", null);
             if(cursor.moveToFirst()){
                 do{
                     TodoList todoList = new TodoList();

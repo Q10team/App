@@ -1,206 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TodoList.UpdateTodoList">
 
-    <TextView
-        android:id="@+id/Textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:text="Title"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_utitle"
-        app:layout_constraintTop_toTopOf="@+id/et_utitle" />
+    <LinearLayout
+        android:id="@+id/framereg"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et_utitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="13dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/et_ucontent"
-        app:layout_constraintEnd_toEndOf="@+id/et_ucontent" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=" 일정 수정"
+            android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/Textview2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:text="Content"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_ucontent"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_ucontent" />
-
-    <EditText
-        android:id="@+id/et_ucontent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="26dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/et_uimportance"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Textview2" />
-
-    <TextView
-        android:id="@+id/Textview3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="201dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Importance"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_uimportance"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_uimportance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginBottom="2dp"
-        android:layout_toRightOf="@+id/tv_importance"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/Textview3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Textview3" />
-
-    <TextView
-        android:id="@+id/Textview4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Hours"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_uprocessHours"
-        app:layout_constraintTop_toBottomOf="@+id/Textview3" />
-
-    <EditText
-        android:id="@+id/et_uprocessHours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/Textview4"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Date(y/m/d)"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/et_year"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_uprocessHours" />
-
-    <EditText
-        android:id="@+id/et_year"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_date"
-        app:layout_constraintEnd_toStartOf="@+id/et_month"
-        app:layout_constraintStart_toEndOf="@+id/tv_date" />
-
-    <EditText
-        android:id="@+id/et_month"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/et_day"
-        app:layout_constraintStart_toEndOf="@+id/et_year"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_day"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
-        android:layout_toRightOf="@+id/tv_processHours"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_month"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/et_month" />
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="69dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_day">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_below="@id/framereg">
 
-        <Button
-            android:id="@+id/btn_back"
+        <EditText
+            android:id="@+id/et_utitle"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:hint="   제목"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_ucontent"
+            android:layout_width="wrap_content"
+            android:layout_height="115dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:gravity="start|top"
+            android:hint="   내용"
+            android:inputType="textMultiLine" />
+
+        <RatingBar
+            android:id="@+id/rb_uimportance"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Back" />
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:stepSize="1.0"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="268dp" />
+
+        <EditText
+            android:id="@+id/et_uprocessHours"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/textback"
+            android:ems="15"
+            android:hint="   예상 소요시간"
+            android:inputType="text" />
+
+
+        <LinearLayout
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_year"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="165dp"
+                tools:layout_editor_absoluteY="415dp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/et_month"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="237dp"
+                tools:layout_editor_absoluteY="415dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/et_day"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:background="@drawable/textback"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="306dp"
+                tools:layout_editor_absoluteY="415dp" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_update"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Update" />
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="수정" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

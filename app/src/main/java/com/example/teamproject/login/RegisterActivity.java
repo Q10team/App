@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -25,6 +26,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
     private EditText et_ID, et_PW, et_Name, et_Email;
     private Button btn_register;
+    private ImageButton imgbtnback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,14 @@ public class RegisterActivity extends AppCompatActivity {
         et_Name = findViewById(R.id.et_Name);
         et_Email = findViewById(R.id.et_Eamil);
         btn_register = findViewById(R.id.btn_register);
+        imgbtnback = findViewById(R.id.imgbtnback);
 
+        imgbtnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegisterActivity.this, com.example.teamproject.login.LoginActivity.class));
+            }
+        });
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.teamproject.Global;
 import com.example.teamproject.R;
+import com.example.teamproject.TodoList.adapter.TodoListAdapter;
 import com.example.teamproject.TodoList.local.TodoListLocalDAO;
 import com.example.teamproject.TodoList.server.TodoListServerDAO;
 import com.example.teamproject.login.LoginActivity;
@@ -44,12 +47,13 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv_date , tv_point, tv_username;
+    private TextView tv_date , tv_point;
     private DatePickerDialog.OnDateSetListener callbackMethod;
 
     int year, month, day;
     TodoListLocalDAO localdb;
     Button btn_add;
+    ImageButton imgbtnback;
     ListView lv_list;
 
     List<TodoList> todoLists = new ArrayList<TodoList>();
@@ -84,13 +88,12 @@ public class MainActivity extends AppCompatActivity {
         btn_add = (Button)findViewById(R.id.btn_add);
         lv_list = (ListView)findViewById(R.id.lv_list);
         tv_date = (TextView)findViewById(R.id.tv_date);
-        tv_date.setText(year + "년" + (month+1) + "월" + day + "일");
+        tv_date.setText(year + "년 " + (month+1) + "월 " + day + "일");
         tv_point = (TextView)findViewById(R.id.tv_point);
-        tv_username = (TextView)findViewById(R.id.tv_username);
-        if(userID!=null)
-            tv_username.setText(userID);
+        imgbtnback = (ImageButton)findViewById(R.id.imgbtnback);
 
         com.example.teamproject.TodoList.adapter.TodoListAdapter todoListAdapter = new com.example.teamproject.TodoList.adapter.TodoListAdapter(getApplicationContext(), todoLists);
+        lv_list.setAdapter(todoListAdapter);
 
         if(userID!=null){
             StringRequest request = new StringRequest(
@@ -105,9 +108,6 @@ public class MainActivity extends AppCompatActivity {
                                 Integer point = jsonObject.getInt("point");
                                 if (success) { // 로그인에 성공한 경우;
                                     tv_point.setText(String.valueOf(point));
-                                } else { // 로그인에 실패한 경우
-                                    tv_point.setText("비회원은 포인트 조회가 불가능합니다.");
-                                    return;
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -135,15 +135,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         todoLists.clear();
-        if(userID==null)
+        if(userID==null) {
             todoLists = localdb.Read(date);
+            todoListAdapter.updateDataSet(todoLists);
+            todoListAdapter.notifyDataSetChanged();
+        }
         else {
             StringRequest request = new StringRequest(
                     Request.Method.POST,
                     Global.GetUrl("read"), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    todoLists.clear();
                     try {
                         JSONArray jsonArray = new JSONArray(response);
                         for(int i=0; i<jsonArray.length();i++) {
@@ -188,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
             request.setShouldCache(false);
             Global.requestQueue.add(request);
         }
+
         todoListAdapter.sort(new Comparator<TodoList>() {
             @Override
             public int compare(TodoList o1, TodoList o2) {
@@ -212,10 +215,11 @@ public class MainActivity extends AppCompatActivity {
             }
             public void OnDateSetListener() {
                 todoLists.clear();
-                if(userID==null)
+                if(userID==null) {
                     todoLists = localdb.Read(date);
+                    todoListAdapter.notifyDataSetChanged();
+                }
                 else {
-                    todoLists.clear();
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
                             Global.GetUrl("read"), new Response.Listener<String>() {
@@ -265,7 +269,6 @@ public class MainActivity extends AppCompatActivity {
                     request.setShouldCache(false);
                     Global.requestQueue.add(request);
                 }
-                //com.example.teamproject.TodoList.adapter.TodoListAdapter todoListAdapter = new com.example.teamproject.TodoList.adapter.TodoListAdapter(getApplicationContext(), todoLists);
                 todoListAdapter.sort(new Comparator<TodoList>() {
                     @Override
                     public int compare(TodoList o1, TodoList o2) {
@@ -305,58 +308,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
-    public List<TodoList> serverRead(String userID, DateData date) {
-        StringRequest request = new StringRequest(
-                Request.Method.POST,
-                Global.GetUrl("read"), new Response.Listener<String>() {
+        imgbtnback.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(String response) {
-                todoLists.clear();
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    for(int i=0; i<jsonArray.length();i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        TodoList todoList = new TodoList();
-                        todoList.setListID(Integer.parseInt(jsonObject.getString("listID")));
-                        todoList.setUserID(jsonObject.getString("userID"));
-                        todoList.setTitle(jsonObject.getString("title"));
-                        todoList.setContent(jsonObject.getString("content"));
-                        todoList.setImportance(Integer.parseInt(jsonObject.getString("importance")));
-                        todoList.setProcessHours(Integer.parseInt(jsonObject.getString("processHours")));
-                        todoList.setUploadDate(jsonObject.getString("uploadDate"));
-                        todoList.setIsAchieved(Integer.parseInt(jsonObject.getString("isAchieved")));
-                        todoLists.add(todoList);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, com.example.teamproject.front.HomeActivity.class);
+                intent.putExtra("userID", userID);
+                startActivity(intent);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, "Something went wrong",Toast.LENGTH_LONG).show();
-                error.printStackTrace();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String,String> parameters = new HashMap<>();
-                parameters.put("userID", userID);
-                String smonth = "", sday = "";
-                if(date.getMonth()< 9)
-                    smonth +="0";
-                if(date.getDay() < 10)
-                    sday +="0";
-                String sdfstr = date.getYear() +"-"+smonth+ (date.getMonth() + 1) +"-"+sday+ date.getDay();
-                parameters.put("uploadDate", sdfstr);
-                return parameters;
-            }
-        };
-        request.setShouldCache(false);
-        Global.requestQueue.add(request);
-        return todoLists;
+        });
     }
 
     public void OnClickDayHandler(View view) {
