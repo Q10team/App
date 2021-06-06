@@ -120,7 +120,8 @@
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    >
 
                     <ImageView
                         android:id="@+id/img_frd2"
@@ -147,7 +148,8 @@
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    >
 
                     <ImageView
                         android:id="@+id/img_frd3"
@@ -174,7 +176,8 @@
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    >
 
                     <ImageView
                         android:id="@+id/img_frd4"
@@ -201,7 +204,8 @@
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    >
 
                     <ImageView
                         android:id="@+id/img_frd5"

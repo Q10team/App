@@ -80,6 +80,26 @@ public class FrdActivity extends AppCompatActivity {
                                 String friend = jsonObject.getString("friendID");
                                 friends.add(friend); //friends 리스트에 친구 이름들 모아뒀습니다. onclick은 미적용했습니다. 세부정보 조회 불가능
                             }
+                            if(friends.size()>=1) {
+                                Name1.setText(friends.get(0));
+                                frd1.setVisibility(View.VISIBLE);
+                                if(friends.size()>=2){
+                                    Name2.setText(friends.get(1));
+                                    frd2.setVisibility(View.VISIBLE);
+                                    if(friends.size()>=3) {
+                                        Name3.setText(friends.get(2));
+                                        frd3.setVisibility(View.VISIBLE);
+                                        if(friends.size()>=4) {
+                                            Name4.setText(friends.get(3));
+                                            frd4.setVisibility(View.VISIBLE);
+                                            if(friends.size()>=5) {
+                                                Name5.setText(friends.get(4));
+                                                frd5.setVisibility(View.VISIBLE);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -105,17 +125,6 @@ public class FrdActivity extends AppCompatActivity {
         Global.requestQueue.add(request);
 
         //이곳에 친구 표시 시스템 작성
-
-        if(friends.contains(0)) Name1.setText(friends.get(0));
-        if(friends.contains(1)) Name2.setText(friends.get(1));
-        if(friends.contains(2)) Name3.setText(friends.get(2));
-        if(friends.contains(3)) Name4.setText(friends.get(3));
-        if(friends.contains(4)) Name5.setText(friends.get(4));
-        if(friends.contains(0)) frd1.setVisibility(View.VISIBLE);
-        if(friends.contains(1)) frd2.setVisibility(View.VISIBLE);
-        if(friends.contains(2)) frd3.setVisibility(View.VISIBLE);
-        if(friends.contains(3)) frd4.setVisibility(View.VISIBLE);
-        if(friends.contains(4)) frd5.setVisibility(View.VISIBLE);
 
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,16 +152,6 @@ public class FrdActivity extends AppCompatActivity {
                                         if (success) { // 성공한 경우;
                                             Toast.makeText(getApplicationContext(), "친구 추가 완료", Toast.LENGTH_SHORT).show();
                                             et_frd.setText("");
-                                            if(friends.contains(0)) Name1.setText(friends.get(0));
-                                            if(friends.contains(1)) Name2.setText(friends.get(1));
-                                            if(friends.contains(2)) Name3.setText(friends.get(2));
-                                            if(friends.contains(3)) Name4.setText(friends.get(3));
-                                            if(friends.contains(4)) Name5.setText(friends.get(4));
-                                            if(friends.contains(0)) frd1.setVisibility(View.VISIBLE);
-                                            if(friends.contains(1)) frd2.setVisibility(View.VISIBLE);
-                                            if(friends.contains(2)) frd3.setVisibility(View.VISIBLE);
-                                            if(friends.contains(3)) frd4.setVisibility(View.VISIBLE);
-                                            if(friends.contains(4)) frd5.setVisibility(View.VISIBLE);
                                         } else { // 실패한 경우
                                             Toast.makeText(getApplicationContext(), "없는 계정입니다.", Toast.LENGTH_SHORT).show();
                                         }
