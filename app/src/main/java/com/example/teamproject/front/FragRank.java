@@ -59,6 +59,7 @@ public class FragRank extends Fragment {
         btn_rank1 = (Button)rootView.findViewById(R.id.btn_rank1);
         btn_rank2 = (Button)rootView.findViewById(R.id.btn_rank2);
         lv_ranks = (ListView) rootView.findViewById(R.id.lv_ranks);
+        rankLists = new ArrayList<User>();
 
         if(Global.requestQueue == null){
             Global.requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -66,22 +67,23 @@ public class FragRank extends Fragment {
 
 
         com.example.teamproject.front.userlistadapter rankadapter = new userlistadapter(getActivity().getApplicationContext(), rankLists);
+        lv_ranks.setAdapter(rankadapter);
 
         if(userID!=null){
             StringRequest request = new StringRequest(
                     Request.Method.POST,
-                    Global.GetUrl("userfriendrank"), new Response.Listener<String>() {
+                    Global.GetUrl("friendrank"), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
                         JSONArray jsonArray = new JSONArray(response);
                         for(int i=0; i<jsonArray.length(); i++) {
-                            if(i>=3)
-                                break;
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             User rankList = new User();
+                            rankList.setUserNum(i+1);
                             rankList.setUserName(jsonObject.getString("name"));
                             rankList.setUserPoint(Integer.parseInt(jsonObject.getString("point")));
+                            rankLists.add(rankList);
                         }
                         rankadapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -104,36 +106,34 @@ public class FragRank extends Fragment {
             request.setShouldCache(false);
             Global.requestQueue.add(request);
 
-
             rankadapter.sort(new Comparator<User>() {
                 @Override
                 public int compare(User o1, User o2) {
                     return String.valueOf(o1.getUserPoint()).compareTo(String.valueOf(o2.getUserPoint()));
                 }
             });
-
             lv_ranks.setAdapter(rankadapter);
-
         }
 
         btn_rank1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rankLists.clear();
                 if(userID!=null){
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
-                            Global.GetUrl("userfriendrank"), new Response.Listener<String>() {
+                            Global.GetUrl("friendrank"), new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
                                 for(int i=0; i<jsonArray.length(); i++) {
-                                    if(i>=3)
-                                        break;
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     User rankList = new User();
+                                    rankList.setUserNum(i+1);
                                     rankList.setUserName(jsonObject.getString("name"));
                                     rankList.setUserPoint(Integer.parseInt(jsonObject.getString("point")));
+                                    rankLists.add(rankList);
                                 }
                                 rankadapter.notifyDataSetChanged();
                             } catch (JSONException e) {
@@ -173,6 +173,7 @@ public class FragRank extends Fragment {
         btn_rank2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rankLists.clear();
                 if(userID!=null){
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
@@ -182,12 +183,12 @@ public class FragRank extends Fragment {
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
                                 for(int i=0; i<jsonArray.length(); i++) {
-                                    if(i>=3)
-                                        break;
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     User rankList = new User();
+                                    rankList.setUserNum(i+1);
                                     rankList.setUserName(jsonObject.getString("name"));
                                     rankList.setUserPoint(Integer.parseInt(jsonObject.getString("point")));
+                                    rankLists.add(rankList);
                                 }
                                 rankadapter.notifyDataSetChanged();
                             } catch (JSONException e) {
@@ -203,7 +204,6 @@ public class FragRank extends Fragment {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             HashMap<String,String> parameters = new HashMap<>();
-                            parameters.put("userID", userID);
                             return parameters;
                         }
                     };

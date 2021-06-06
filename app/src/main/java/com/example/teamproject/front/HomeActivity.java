@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.teamproject.R;
+import com.example.teamproject.TodoList.ListDetail;
+import com.example.teamproject.TodoList.MainActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -80,16 +82,9 @@ public class HomeActivity extends AppCompatActivity {
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                FragSet fragset = new FragSet();
-
-                Bundle bundle = new Bundle(1); // 파라미터의 숫자는 전달하려는 값의 갯수
-                bundle.putString("userID", userID);
-                fragset.setArguments(bundle);
-
-                transaction.replace(R.id.frame, fragset);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Intent intent = new Intent(HomeActivity.this, com.example.teamproject.front.FragSet.class);
+                intent.putExtra("userID", userID);
+                startActivity(intent);
             }
         });
     }
