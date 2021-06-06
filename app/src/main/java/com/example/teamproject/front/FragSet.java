@@ -2,20 +2,14 @@ package com.example.teamproject.front;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -24,10 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.teamproject.Global;
-import com.example.teamproject.MainActivity;
 import com.example.teamproject.R;
-import com.example.teamproject.login.LoginActivity;
-import com.example.teamproject.login.RegisterActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,7 +28,7 @@ import java.util.Map;
 
 public class FragSet extends AppCompatActivity {
     private EditText et_Avata, et_PW, et_Name, et_Email;
-    private Button btn_modify, b_logout;
+    private Button btn_modify, b_logout, b_ver;
     private TextView t_ID, t_Name;
     private ImageButton img_Avata;
 
@@ -59,7 +50,7 @@ public class FragSet extends AppCompatActivity {
         et_Avata = findViewById(R.id.et_Avata);
         btn_modify = findViewById(R.id.btn_modify);
         b_logout = findViewById(R.id.btn_set6);
-
+        b_ver = findViewById(R.id.btn_set5);
         t_ID.setText(userID);
 
         StringRequest request = new StringRequest(
@@ -83,28 +74,22 @@ public class FragSet extends AppCompatActivity {
                                 et_Avata.setText(String.valueOf(userAvata));
                                 switch(userAvata) {
                                     case 0:
-                                        img_Avata.setImageResource(R.drawable.user1); //user0...?
+                                        img_Avata.setImageResource(R.drawable.avatar0); //user0...?
                                         break;
                                     case 1:
-                                        img_Avata.setImageResource(R.drawable.user1);
+                                        img_Avata.setImageResource(R.drawable.avatar1);
                                         break;
                                     case 2:
-                                        img_Avata.setImageResource(R.drawable.user2);
+                                        img_Avata.setImageResource(R.drawable.avatar2);
                                         break;
                                     case 3:
-                                        img_Avata.setImageResource(R.drawable.user3);
+                                        img_Avata.setImageResource(R.drawable.avatar3);
                                         break;
                                     case 4:
-                                        img_Avata.setImageResource(R.drawable.user3); //user4...?
+                                        img_Avata.setImageResource(R.drawable.avatar4); //user4...?
                                         break;
                                     case 5:
-                                        img_Avata.setImageResource(R.drawable.user3); //user5...?
-                                        break;
-                                    case 6:
-                                        img_Avata.setImageResource(R.drawable.user3); //user6...?
-                                        break;
-                                    case 7:
-                                        img_Avata.setImageResource(R.drawable.user3); //user7...?
+                                        img_Avata.setImageResource(R.drawable.avatar5); //user5...?
                                         break;
                                 }
                             } else { // 사용자 정보 가져오기 실패
@@ -132,6 +117,12 @@ public class FragSet extends AppCompatActivity {
         };
         request.setShouldCache(false);
         Global.requestQueue.add(request);
+        b_ver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"App Version '시연용 프로토타입'",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         b_logout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -37,7 +37,7 @@
                 android:layout_marginLeft="20dp"
                 android:scaleType="fitCenter"
                 android:background="@color/white"
-                android:src="@drawable/user3" />
+                android:src="@drawable/avatar0" />
 
             <LinearLayout
                 android:layout_width="380dp"
@@ -69,7 +69,7 @@
                         android:layout_weight="1"
                         android:textColor="@color/black"
                         android:textSize="15dp"
-                        android:text="테스트" />
+                        android:text="닉네임" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="250dp"
@@ -122,7 +122,8 @@
                 android:id="@+id/et_Name"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="360dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
                 android:gravity="left"
                 android:hint="닉네임"
                 android:maxLines="1"
@@ -136,8 +137,9 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 app:backgroundTint="@color/white"
                 android:maxLines="1"
+                android:layout_marginLeft="20dp"
                 android:gravity="left"
-                android:hint="아바타"
+                android:hint="아바타 (0~5)"
                 android:inputType="text"
                 android:textColor="@color/black" />
             <EditText
@@ -146,6 +148,7 @@
                 android:layout_height="40dp"
                 app:backgroundTint="@color/white"
                 android:maxLines="1"
+                android:layout_marginLeft="20dp"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:gravity="left"
                 android:hint="이메일"
@@ -158,6 +161,7 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 app:backgroundTint="@color/white"
                 android:maxLines="1"
+                android:layout_marginLeft="20dp"
                 android:gravity="left"
                 android:hint="비밀번호"
                 android:inputType="text"
@@ -165,6 +169,7 @@
             <Button
                 android:id="@+id/btn_modify"
                 android:layout_width="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_height="40dp"
                 android:gravity="center_horizontal"
                 android:text="수정"/>

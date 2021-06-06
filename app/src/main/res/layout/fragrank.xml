@@ -45,6 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
+                android:textSize="17dp"
                 android:text="친구 랭킹" />
 
             <Button
@@ -52,7 +53,8 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="커뮤니티 랭킹" />
+                android:textSize="17dp"
+                android:text="전체 랭킹" />
         </LinearLayout>
 
         <ListView

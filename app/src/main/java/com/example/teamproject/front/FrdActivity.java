@@ -31,12 +31,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Boolean.TRUE;
+
 public class FrdActivity extends AppCompatActivity {
     ImageButton imgbtn;
     Button btnadd;
-    TextView txtName;
+    TextView Name1,Name2,Name3,Name4,Name5;
     EditText et_frd;
-    LinearLayout frd5;
+    LinearLayout frd1,frd2,frd3,frd4,frd5;
     ArrayList<String> friends;
 
     @Override
@@ -47,13 +49,21 @@ public class FrdActivity extends AppCompatActivity {
 
         et_frd = findViewById(R.id.et_frd);
         btnadd = (Button)findViewById(R.id.btn_frdadd);
-        txtName = (TextView)findViewById(R.id.btn_frd5);
+
+        Name1 = (TextView)findViewById(R.id.btn_frd1);
+        Name2 = (TextView)findViewById(R.id.btn_frd2);
+        Name3 = (TextView)findViewById(R.id.btn_frd3);
+        Name4 = (TextView)findViewById(R.id.btn_frd4);
+        Name5 = (TextView)findViewById(R.id.btn_frd5);
+
+        frd1 = (LinearLayout)findViewById(R.id.frd_1);
+        frd2 = (LinearLayout)findViewById(R.id.frd_2);
+        frd3 = (LinearLayout)findViewById(R.id.frd_3);
+        frd4 = (LinearLayout)findViewById(R.id.frd_4);
         frd5 = (LinearLayout)findViewById(R.id.frd_5);
+
         final String userID = (String) getIntent().getSerializableExtra("userID");
         friends = new ArrayList<String>();
-
-
-        frd5.setVisibility(View.INVISIBLE);
         imgbtn = (ImageButton)findViewById(R.id.ibtn_back);
 
         StringRequest request = new StringRequest(
@@ -90,9 +100,22 @@ public class FrdActivity extends AppCompatActivity {
                 return param;
             }
         };
+
         request.setShouldCache(false);
         Global.requestQueue.add(request);
 
+        //이곳에 친구 표시 시스템 작성
+
+        if(friends.contains(0)) Name1.setText(friends.get(0));
+        if(friends.contains(1)) Name2.setText(friends.get(1));
+        if(friends.contains(2)) Name3.setText(friends.get(2));
+        if(friends.contains(3)) Name4.setText(friends.get(3));
+        if(friends.contains(4)) Name5.setText(friends.get(4));
+        if(friends.contains(0)) frd1.setVisibility(View.VISIBLE);
+        if(friends.contains(1)) frd2.setVisibility(View.VISIBLE);
+        if(friends.contains(2)) frd3.setVisibility(View.VISIBLE);
+        if(friends.contains(3)) frd4.setVisibility(View.VISIBLE);
+        if(friends.contains(4)) frd5.setVisibility(View.VISIBLE);
 
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,14 +124,12 @@ public class FrdActivity extends AppCompatActivity {
                 intent.putExtra("userID", userID);
                 startActivity(intent);
             }
-
         });
+
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ID = et_frd.getText().toString();
-                //txtName.setText(ID);
-                //frd5.setVisibility(View.VISIBLE);
                 if(!userID.equals(ID)) {
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
@@ -122,6 +143,16 @@ public class FrdActivity extends AppCompatActivity {
                                         if (success) { // 성공한 경우;
                                             Toast.makeText(getApplicationContext(), "친구 추가 완료", Toast.LENGTH_SHORT).show();
                                             et_frd.setText("");
+                                            if(friends.contains(0)) Name1.setText(friends.get(0));
+                                            if(friends.contains(1)) Name2.setText(friends.get(1));
+                                            if(friends.contains(2)) Name3.setText(friends.get(2));
+                                            if(friends.contains(3)) Name4.setText(friends.get(3));
+                                            if(friends.contains(4)) Name5.setText(friends.get(4));
+                                            if(friends.contains(0)) frd1.setVisibility(View.VISIBLE);
+                                            if(friends.contains(1)) frd2.setVisibility(View.VISIBLE);
+                                            if(friends.contains(2)) frd3.setVisibility(View.VISIBLE);
+                                            if(friends.contains(3)) frd4.setVisibility(View.VISIBLE);
+                                            if(friends.contains(4)) frd5.setVisibility(View.VISIBLE);
                                         } else { // 실패한 경우
                                             Toast.makeText(getApplicationContext(), "없는 계정입니다.", Toast.LENGTH_SHORT).show();
                                         }
@@ -155,6 +186,3 @@ public class FrdActivity extends AppCompatActivity {
         });
     };
 }
-
-
-

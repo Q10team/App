@@ -55,7 +55,6 @@ public class FragRank extends Fragment {
         if (bundle != null) {
             userID = bundle.getString("userID");
         }
-
         btn_rank1 = (Button)rootView.findViewById(R.id.btn_rank1);
         btn_rank2 = (Button)rootView.findViewById(R.id.btn_rank2);
         lv_ranks = (ListView) rootView.findViewById(R.id.lv_ranks);

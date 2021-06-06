@@ -91,7 +91,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    >
 
                     <ImageView
                         android:id="@+id/img_frd1"
@@ -106,7 +108,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="left"
-                        android:text=" hb"
+                        android:text=" 친구1"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         app:backgroundTint="@color/white" />
@@ -117,7 +119,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/img_frd2"
@@ -132,7 +135,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="left"
-                        android:text=" user"
+                        android:text=" 친구2"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         app:backgroundTint="@color/white" />
@@ -143,7 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/img_frd3"
@@ -158,7 +162,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="left"
-                        android:text=" hgh"
+                        android:text=" 친구3"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         app:backgroundTint="@color/white" />
@@ -169,7 +173,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/img_frd4"
@@ -179,12 +184,12 @@
                         android:src="@drawable/user3" />
 
                     <Button
-                        android:id="@+id/btn_fr4"
+                        android:id="@+id/btn_frd4"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="left"
-                        android:text="pmw"
+                        android:text=" 친구4"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         app:backgroundTint="@color/white" />
@@ -195,7 +200,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/img_frd5"
@@ -210,7 +216,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="left"
-                        android:text=" 친구5 아이디"
+                        android:text=" 친구5"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         app:backgroundTint="@color/white" />
