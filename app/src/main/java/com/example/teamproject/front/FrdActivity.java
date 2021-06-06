@@ -70,6 +70,7 @@ public class FrdActivity extends AppCompatActivity {
                                 String friend = jsonObject.getString("friendID");
                                 friends.add(friend); //friends 리스트에 친구 이름들 모아뒀습니다. onclick은 미적용했습니다. 세부정보 조회 불가능
                             }
+                            System.out.println(friends);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -118,11 +119,14 @@ public class FrdActivity extends AppCompatActivity {
                                 public void onResponse(String response) {
                                     try {
                                         JSONObject jsonObject = new JSONObject(response);
-                                        boolean success = jsonObject.getBoolean("success");
-                                        if (success) { // 성공한 경우;
+                                        int success = jsonObject.getInt("success");
+                                        if (success == 1) { // 성공한 경우;
                                             Toast.makeText(getApplicationContext(), "친구 추가 완료", Toast.LENGTH_SHORT).show();
                                             et_frd.setText("");
-                                        } else { // 실패한 경우
+                                        } else if (success == 2) { // 실패한 경우
+                                            Toast.makeText(getApplicationContext(), "이미 추가된 계정입니다.", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else {
                                             Toast.makeText(getApplicationContext(), "없는 계정입니다.", Toast.LENGTH_SHORT).show();
                                         }
                                     } catch (JSONException e) {
