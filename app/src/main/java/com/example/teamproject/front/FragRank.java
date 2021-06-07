@@ -86,6 +86,12 @@ public class FragRank extends Fragment {
                             rankLists.add(rankList);
                         }
                         rankadapter.notifyDataSetChanged();
+                        rankadapter.sort(new Comparator<User>() {
+                            @Override
+                            public int compare(User o1, User o2) {
+                                return (o2.getUserPoint() - o1.getUserPoint());
+                            }
+                        });
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -106,12 +112,6 @@ public class FragRank extends Fragment {
             request.setShouldCache(false);
             Global.requestQueue.add(request);
 
-            rankadapter.sort(new Comparator<User>() {
-                @Override
-                public int compare(User o1, User o2) {
-                    return String.valueOf(o1.getUserPoint()).compareTo(String.valueOf(o2.getUserPoint()));
-                }
-            });
             lv_ranks.setAdapter(rankadapter);
         }
 
@@ -136,6 +136,12 @@ public class FragRank extends Fragment {
                                     rankLists.add(rankList);
                                 }
                                 rankadapter.notifyDataSetChanged();
+                                rankadapter.sort(new Comparator<User>() {
+                                    @Override
+                                    public int compare(User o1, User o2) {
+                                        return (o2.getUserPoint() - o1.getUserPoint());
+                                    }
+                                });
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -155,14 +161,6 @@ public class FragRank extends Fragment {
                     };
                     request.setShouldCache(false);
                     Global.requestQueue.add(request);
-
-
-                    rankadapter.sort(new Comparator<User>() {
-                        @Override
-                        public int compare(User o1, User o2) {
-                            return String.valueOf(o1.getUserPoint()).compareTo(String.valueOf(o2.getUserPoint()));
-                        }
-                    });
 
                     lv_ranks.setAdapter(rankadapter);
 
@@ -191,6 +189,12 @@ public class FragRank extends Fragment {
                                     rankLists.add(rankList);
                                 }
                                 rankadapter.notifyDataSetChanged();
+                                rankadapter.sort(new Comparator<User>() {
+                                    @Override
+                                    public int compare(User o1, User o2) {
+                                        return (o2.getUserPoint() - o1.getUserPoint());
+                                    }
+                                });
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -209,14 +213,6 @@ public class FragRank extends Fragment {
                     };
                     request.setShouldCache(false);
                     Global.requestQueue.add(request);
-
-
-                    rankadapter.sort(new Comparator<User>() {
-                        @Override
-                        public int compare(User o1, User o2) {
-                            return String.valueOf(o1.getUserPoint()).compareTo(String.valueOf(o2.getUserPoint()));
-                        }
-                    });
 
                     lv_ranks.setAdapter(rankadapter);
 

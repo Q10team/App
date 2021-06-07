@@ -70,7 +70,6 @@ public class FrdActivity extends AppCompatActivity {
                                 String friend = jsonObject.getString("friendID");
                                 friends.add(friend); //friends 리스트에 친구 이름들 모아뒀습니다. onclick은 미적용했습니다. 세부정보 조회 불가능
                             }
-                            System.out.println(friends);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

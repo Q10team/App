@@ -30,7 +30,7 @@ public class userlistadapter extends ArrayAdapter<User> {
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view  = layoutInflater.inflate(R.layout.ranklist_list, parent, false);
         TextView tv_rank = (TextView)view.findViewById(R.id.tv_rank);
-        tv_rank.setText(String.valueOf(userLists.get(position).getUserNum()));
+        tv_rank.setText(String.valueOf(position+1));
         TextView tv_name = (TextView)view.findViewById(R.id.tv_name);
         tv_name.setText(userLists.get(position).getUserName());
         TextView tv_point = (TextView)view.findViewById(R.id.tv_point);
